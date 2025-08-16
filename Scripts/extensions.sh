@@ -39,3 +39,29 @@ sudo cp ~/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io/schemas
 sudo cp ~/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com/schemas/org.gnome.shell.extensions.user-theme.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
+
+# Changing settings of AppIndicator and KStatusNotifierItem Support
+gsettings set org.gnome.shell.extensions.appindicator tray-pos "center"
+
+# Changing settings of Dash2Dock Animated
+gsettings set org.gnome.shell.extensions.dash2dock-lite open-app-animation true
+gsettings set org.gnome.shell.extensions.dash2dock-lite autohide-dash true
+gsettings set org.gnome.shell.extensions.dash2dock-lite shrink-icons true
+gsettings set org.gnome.shell.extensions.dash2dock-lite edge-distance 0.6
+gsettings set org.gnome.shell.extensions.dash2dock-lite icon-size 0.26
+gsettings set org.gnome.shell.extensions.dash2dock-lite border-radius 2
+gsettings set org.gnome.shell.extensions.dash2dock-lite running-indicator-style 1  
+gsettings set org.gnome.shell.extensions.dash2dock-lite trash-icon true
+
+# Changing settings of TopHat
+gsettings set org.gnome.shell.extensions.tophat cpu-display 'numeric'
+gsettings set org.gnome.shell.extensions.tophat mem-abs-units true
+gsettings set org.gnome.shell.extensions.tophat mem-display 'numeric'
+
+# Changing settings of Background logo
+gsettings set org.fedorahosted.background-logo-extension logo-position 'bottom-right'
+gsettings set org.fedorahosted.background-logo-extension logo-size 8
+gsettings set org.fedorahosted.background-logo-extension logo-border 25
+gsettings set org.fedorahosted.background-logo-extension logo-always-visible true
+
+

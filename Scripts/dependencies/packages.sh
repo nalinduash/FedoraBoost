@@ -81,3 +81,4 @@ if [[ $failed_count -gt 0 ]]; then
 else
     logPass "All packages installed successfully! 🎉";
 fi
+br

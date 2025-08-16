@@ -53,7 +53,7 @@ logFailInstall() {
 
 logSummary() {
     echo -e "";
-    echo -e "\e[36m\n=== $1 Summary ===\e[0m";
+    echo -e "\e[36m=== $1 Summary ===\e[0m";
 }
 
 logPass(){

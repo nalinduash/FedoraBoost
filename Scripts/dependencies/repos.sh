@@ -37,3 +37,4 @@ fi
 # Summary
 logSummary "Repo Installation";
 logPass "All Repos Successfully installed";
+br
