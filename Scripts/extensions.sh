@@ -48,7 +48,6 @@ gsettings set org.gnome.shell.extensions.dash2dock-lite open-app-animation true
 gsettings set org.gnome.shell.extensions.dash2dock-lite autohide-dash true
 gsettings set org.gnome.shell.extensions.dash2dock-lite shrink-icons true
 gsettings set org.gnome.shell.extensions.dash2dock-lite edge-distance 0.6
-gsettings set org.gnome.shell.extensions.dash2dock-lite icon-size 0.26
 gsettings set org.gnome.shell.extensions.dash2dock-lite border-radius 2
 gsettings set org.gnome.shell.extensions.dash2dock-lite running-indicator-style 1  
 gsettings set org.gnome.shell.extensions.dash2dock-lite trash-icon true

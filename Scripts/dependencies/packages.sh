@@ -3,6 +3,10 @@
 # Importing SH files
 source ./Scripts/common.sh
 
+# Speedup DNF installation
+add_configs "/etc/dnf/dnf.conf" "max_parallel_downloads=10"
+add_configs "/etc/dnf/dnf.conf" "fastestmirror=True"
+logInfo "Speeding-up DNF"
 
 # Packages to install
 packages=(
@@ -15,6 +19,13 @@ packages=(
     "git"                           # Version control system
     "python3-pip"                   # To install gnome-extension-cli to automate the installation of gnome extensions
     "gnome-extensions-app"          # Manage Gnome extensions
+    "gnome-tweaks"                  # Change gnome appearance
+    "gum"                           # This installer need this to provide you a better user experience in the installation steps
+    "vlc"                           # Media player
+    "pipewire-alsa"                 # Handling Audio
+    "pipewire-utils"                # Handling Audio
+    "nvtop"                         # Check GPU usage
+    "ulauncher"                     # Quick launcher
 )
 
 

@@ -55,7 +55,7 @@ if [[ "$response" != "y" && "$response" != "yes" ]]; then
     exit 0;
 fi    
     
-# Start
+# ====================Start======================
 clear;
 logMessage "Starting customization...";
 
@@ -79,8 +79,19 @@ source ./Scripts/fish.sh;
 logInfo "4 - Installing Gnome Shell extensions";
 source ./Scripts/extensions.sh; 
 
+# Adding Shortcut key combinations
+logInfo "5 - Adding Shortcut key combinations";
+source ./Scripts/shortcuts.sh; 
 
+# Change Gnome settings
+logInfo "6 - Changing Gnome settings";
+source ./Scripts/gnome_settings.sh; 
 
+# Fonts
+logInfo "7 - Adding fonts";
+source ./Scripts/fonts.sh; 
+
+# ===================END=======================
 # Enable default sleeping and locking behaviour
 gsettings set org.gnome.desktop.screensaver lock-enabled true
 gsettings set org.gnome.desktop.session idle-delay 300

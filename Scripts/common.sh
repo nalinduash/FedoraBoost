@@ -71,3 +71,8 @@ logFail(){
 #                       |
 #                       V
 
+add_configs() {
+  local file="$1"
+  local config="$2"
+  grep -qF "$config" "$file" || echo "$config" | sudo tee -a "$file" > /dev/null
+}

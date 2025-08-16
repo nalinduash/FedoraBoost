@@ -1,4 +1,3 @@
-fonts
 wallpapers
-minimize/maximize buttons
-shortcut keys
+nvidia
+ulauncher
