@@ -18,7 +18,7 @@ TARGET="$DEST/Background"
 URI="file://$TARGET"
 
 # Set GNOME wallpaper (light & dark)
-gsettings set org.gnome.desktop.background picture-uri "$URI-1.png"
-gsettings set org.gnome.desktop.background picture-uri-dark "$URI-2.png"
+gsettings set org.gnome.desktop.background picture-uri "$URI-4.png"
+gsettings set org.gnome.desktop.background picture-uri-dark "$URI-3.png"
 
 logPass "Wallpapers successfully added"
