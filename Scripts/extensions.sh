@@ -3,6 +3,11 @@
 # Source common.sh 
 source ./Scripts/common.sh;
 
+# Install packages
+installPackages "gnome-extensions-app"          # Manage Gnome extensions
+installPackages "gnome-tweaks"                  # Change Gnome appearance
+installPipPackages "gnome-extensions-cli"       # To install Gnome extensions
+
 # Turn off some default Fedora extensions
 gnome-extensions disable launch-new-instance@gnome-shell-extensions.gcampax.github.com
 gnome-extensions disable window-list@gnome-shell-extensions.gcampax.github.com

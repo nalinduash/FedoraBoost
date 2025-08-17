@@ -25,16 +25,7 @@ else
     logAlreadyInstall "RPM Fusion Non-Free repository";
 fi
 
-
-# Add custom repos for such as ghostty
-if ! dnf copr list | grep -q "scottames/ghostty"; then
-    sudo dnf copr enable -y scottames/ghostty
-    logPassInstall "COPR repo scottames/ghostty enabled."
-else
-    logAlreadyInstall "COPR repo scottames/ghostty already enabled."
-fi
-
 # Summary
-logSummary "Repo Installation";
+logSummary "Free and Non-free Repo Installation";
 logPass "All Repos Successfully installed";
 br

@@ -3,7 +3,13 @@
 # Source common.sh 
 source ./Scripts/common.sh;
 
-# Install oh-my-posh (with check)
+# Install packages
+addRepo "scottames/ghostty"                 # Add repository containing ghostty
+installPackages "fastfetch"                 # Show system information
+installPackages "ghostty"                   # Powerful terminal
+installPackages "fish"                      # Fast shell interpreter 
+
+# Install oh-my-posh 
 if ! command -v oh-my-posh &> /dev/null; then
     curl -s https://ohmyposh.dev/install.sh | bash -s
     logPassInstall "oh-my-posh"

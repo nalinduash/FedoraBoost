@@ -81,6 +81,51 @@ add_configs() {
 }
 
 
+# =======> Installing packages if not installed
+installPackages(){
+  if rpm -q "$1" &>/dev/null; then
+    logAlreadyInstall "$1";
+  else
+    if sudo dnf install -y "$1" &>/dev/null; then
+      logPassInstall "$1"
+    else
+      logFailInstall "$1"
+      exit 1;
+    fi
+  fi
+}
+
+addRepo(){
+  if ! dnf copr list | grep -q "$1"; then
+    sudo dnf copr enable -y $1
+    if dnf copr list | grep -q "$1"; then
+      logPass "COPR repo $1 enabled."
+    else
+      logFail "COPR repo $1 is not enabled."
+    fi
+  else
+    logPass "COPR repo $1 already enabled."
+  fi
+}
+
+installPipPackages() {
+  if ! command -v pip3 &> /dev/null; then
+    installPackages "python3-pip"
+  else
+    if pip3 show "$1" &> /dev/null; then
+      logPass "$1 pip packages is already installed" 
+    else
+      pip3 install --upgrade $1
+      if pip3 show "$1" &> /dev/null; then
+        logPass "$1 pip package installed." 
+      else
+        logFail "$1 pip package is not installed." 
+      fi
+    fi
+  fi
+}
+
+
 # =======> Adding custom shortcuts
 SCHEMA="org.gnome.settings-daemon.plugins.media-keys"
 SUBSCHEMA="$SCHEMA.custom-keybinding"

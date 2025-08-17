@@ -18,6 +18,12 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
+# Cache the sudo privilages so, user only need to enter password one time.
+sudo -v
+
+# Keep sudo credentials alive in the background
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 # Clear the screen
 clear
 
@@ -59,36 +65,45 @@ fi
 clear;
 logMessage "Starting customization...";
 
+# Adding some needed packages for the installation
+logInfo "Adding some needed packages for the installation"
+
+
 # Stop sleeping and locking during the installation
 gsettings set org.gnome.desktop.screensaver lock-enabled false
 gsettings set org.gnome.desktop.session idle-delay 0
 
-# Update system
-logInfo "1 - Updating the system";
-sudo dnf update && sudo dnf upgrade
+# Speedup DNF installation
+add_configs "/etc/dnf/dnf.conf" "max_parallel_downloads=10"
+add_configs "/etc/dnf/dnf.conf" "fastestmirror=True"
+logInfo "Speeding-up DNF"
 
-# Installing Dependencies
-logInfo "2 - Installing Dependencies";
-source ./Scripts/dependencies.sh;    
+# Enabaling RPM fusion Repos
+logInfo "Enabaling RPM fusion Repos";
+source "./Scripts/rpmFusionRepo.sh"
+
+# Update system
+logInfo "Updating the system";
+sudo dnf update && sudo dnf upgrade   
 
 # Installing Fish Shell and customizing it
-logInfo "3 - Installing Fish Shell and customizing it";
+logInfo "Installing Fish Shell and customizing it";
 source ./Scripts/fish.sh; 
 
 # Installing Gnome Shell Extensions
-logInfo "4 - Installing Gnome Shell extensions";
+logInfo "Installing Gnome Shell extensions";
 source ./Scripts/extensions.sh; 
 
 # Adding Shortcut key combinations
-logInfo "5 - Adding Shortcut key combinations";
+logInfo "Adding Shortcut key combinations";
 source ./Scripts/shortcuts.sh; 
 
 # Change Gnome settings
-logInfo "6 - Changing Gnome settings";
+logInfo "Changing Gnome settings";
 source ./Scripts/gnome_settings.sh; 
 
 # Fonts
-logInfo "7 - Adding fonts";
+logInfo "Adding fonts";
 source ./Scripts/fonts.sh; 
 
 # ===================END=======================
