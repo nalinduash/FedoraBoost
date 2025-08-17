@@ -51,3 +51,6 @@ fi
 logInfo "Copying Fish config..."
 mkdir -p $HOME/.config/fish
 cp "./Assets/Configs/fish/config.fish" "$HOME/.config/fish/config.fish"
+
+# Adding shortcuts for ghostty
+add_shortcut_if_missing "Ghostty" "ghostty" "<Control><Alt>t"
