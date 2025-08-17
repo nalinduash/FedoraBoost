@@ -106,6 +106,10 @@ source ./Scripts/gnome_settings.sh;
 logInfo "Adding fonts";
 source ./Scripts/fonts.sh; 
 
+# Wallpapers
+logInfo "Adding wallpapers";
+source ./Scripts/wallpapers.sh; 
+
 # ===================END=======================
 # Enable default sleeping and locking behaviour
 gsettings set org.gnome.desktop.screensaver lock-enabled true
