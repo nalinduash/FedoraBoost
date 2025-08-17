@@ -19,6 +19,7 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 # Cache the sudo privilages so, user only need to enter password one time.
+logMessage "Enter your password to begin customizations..."
 sudo -v
 
 # Keep sudo credentials alive in the background
