@@ -28,3 +28,7 @@ cp -r "$TEMP_DIR/dist-dark-nord" $INSTALL_DIR/Graphite-dark-nord-cursors
 # Set the cursor theme in GNOME
 logInfo "Setting cursor theme to Graphite-Cursors"
 gsettings set org.gnome.desktop.interface cursor-theme "$DEFAULT_THEME_NAME"
+
+# Cleaning up
+logInfo "Cleaning up"
+rm -rf "./Temp/Cursor/"
