@@ -87,29 +87,13 @@ source "./Scripts/rpmFusionRepo.sh"
 logInfo "Updating the system";
 sudo dnf update && sudo dnf upgrade   
 
-# Installing Fish Shell and customizing it
-logInfo "Installing Fish Shell and customizing it";
-source ./Scripts/fish.sh; 
-
-# Installing Gnome Shell Extensions
-logInfo "Installing Gnome Shell extensions";
-source ./Scripts/extensions.sh; 
-
 # Adding Shortcut key combinations
 logInfo "Adding Shortcut key combinations";
 source ./Scripts/shortcuts.sh; 
 
-# Change Gnome settings
-logInfo "Changing Gnome settings";
-source ./Scripts/gnome_settings.sh; 
+# Theming Desktop
+source ./Scripts/theming.sh; 
 
-# Fonts
-logInfo "Adding fonts";
-source ./Scripts/fonts.sh; 
-
-# Wallpapers
-logInfo "Adding wallpapers";
-source ./Scripts/wallpapers.sh; 
 
 # ===================END=======================
 # Enable default sleeping and locking behaviour
