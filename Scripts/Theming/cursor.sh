@@ -11,8 +11,8 @@ TEMP_DIR="./Temp/Cursor/"
 
 # Clone repo
 logInfo "Cloning repo into $TEMP_DIR"
-rm -rf "./Temp/Cursor/"
-mkdir -p "./Temp/Cursor/"
+rm -rf "$TEMP_DIR"
+mkdir -p "$TEMP_DIR"
 git clone "$REPO_URL" "$TEMP_DIR"
 
 # Remove if already exists
