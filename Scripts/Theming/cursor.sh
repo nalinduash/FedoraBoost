@@ -6,7 +6,7 @@ source ./Scripts/common.sh;
 # Constants
 REPO_URL="https://github.com/vinceliuice/Graphite-cursors.git"
 INSTALL_DIR="$HOME/.local/share/icons"
-DEFAULT_THEME_NAME="Graphite-light-nord-cursors"
+DEFAULT_THEME_NAME="Graphite-dark-nord-cursors"
 TEMP_DIR="./Temp/Cursor/"
 
 # Clone repo

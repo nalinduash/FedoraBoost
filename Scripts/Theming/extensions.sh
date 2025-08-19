@@ -8,6 +8,17 @@ installPackages "gnome-extensions-app"          # Manage Gnome extensions
 installPackages "gnome-tweaks"                  # Change Gnome appearance
 installPipPackages "gnome-extensions-cli"       # To install Gnome extensions
 
+# Install Gnome extensions if they are not installed
+install_extension() {
+  if gext list | grep -q "$1"; then
+    logInfo "Extension already installed: $1"
+    gext enable "$1"
+  else
+    gext install "$1"
+    gext enable "$1"
+  fi
+}
+
 # Turn off some default Fedora extensions
 gnome-extensions disable launch-new-instance@gnome-shell-extensions.gcampax.github.com
 gnome-extensions disable window-list@gnome-shell-extensions.gcampax.github.com
@@ -18,17 +29,17 @@ gnome-extensions enable background-logo@fedorahosted.org
 gnome-extensions enable places-menu@gnome-shell-extensions.gcampax.github.com
 
 # Install new extensions
-gext install appindicatorsupport@rgcjonas.gmail.com
-gext install blur-my-shell@aunetx
-gext install clipboard-indicator@tudmotu.com
-gext install compiz-alike-magic-lamp-effect@hermes83.github.com
-gext install compiz-windows-effect@hermes83.github.com
-gext install dash2dock-lite@icedman.github.com
-gext install desktop-cube@schneegans.github.com
-gext install mediacontrols@cliffniff.github.com
-gext install tiling-assistant@leleat-on-github
-gext install tophat@fflewddur.github.io
-gext install user-theme@gnome-shell-extensions.gcampax.github.com
+install_extension "appindicatorsupport@rgcjonas.gmail.com"
+install_extension "blur-my-shell@aunetx"
+install_extension "clipboard-indicator@tudmotu.com"
+install_extension "compiz-alike-magic-lamp-effect@hermes83.github.com"
+install_extension "compiz-windows-effect@hermes83.github.com"
+install_extension "dash2dock-lite@icedman.github.com"
+install_extension "desktop-cube@schneegans.github.com"
+install_extension "mediacontrols@cliffniff.github.com"
+install_extension "tiling-assistant@leleat-on-github"
+install_extension "tophat@fflewddur.github.io"
+install_extension "user-theme@gnome-shell-extensions.gcampax.github.com"
 
 # Compile gsettings schemas in order to be able to set them
 sudo cp ~/.local/share/gnome-shell/extensions/appindicatorsupport@rgcjonas.gmail.com/schemas/org.gnome.shell.extensions.appindicator.gschema.xml /usr/share/glib-2.0/schemas/

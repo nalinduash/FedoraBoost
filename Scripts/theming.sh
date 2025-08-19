@@ -7,6 +7,10 @@ source ./Scripts/common.sh;
 logInfo "Installing Fish Shell and customizing it";
 source ./Scripts/Theming/fish.sh; 
 
+# Wallpapers
+logInfo "Adding wallpapers";
+source ./Scripts/Theming/wallpapers.sh; 
+
 # Installing Gnome Shell Extensions
 logInfo "Installing Gnome Shell extensions";
 source ./Scripts/Theming/extensions.sh; 
@@ -18,10 +22,6 @@ source ./Scripts/Theming/gnome_settings.sh;
 # Fonts
 logInfo "Adding fonts";
 source ./Scripts/Theming/fonts.sh; 
-
-# Wallpapers
-logInfo "Adding wallpapers";
-source ./Scripts/Theming/wallpapers.sh; 
 
 # Cursor
 logInfo "Adding cursor";
