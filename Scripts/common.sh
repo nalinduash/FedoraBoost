@@ -125,6 +125,57 @@ installPipPackages() {
   fi
 }
 
+# Ensure flatpak and flathub are installed
+ensureFlatpak(){
+  if ! command -v flatpak &>/dev/null; then
+    if sudo dnf install -y flatpak &>/dev/null; then
+      logPassInstall "flatpak"
+    else
+      logFailInstall "flatpak"
+      exit 1
+    fi
+  fi
+
+  # Check if flathub remote exists
+  if ! flatpak remote-list | grep -q "^flathub"; then
+    if flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo &>/dev/null; then
+      logPassInstall "flathub remote"
+    else
+      logFailInstall "flathub remote"
+      exit 1
+    fi
+  fi
+}
+
+# Install Flatpak package
+installFlatpakPackage(){
+  ensureFlatpak
+  if flatpak list --app | grep -q "$1"; then
+    logAlreadyInstall "$1"
+  else
+    if flatpak install -y flathub "$1" &>/dev/null; then
+      logPassInstall "$1"
+    else
+      logFailInstall "$1"
+      exit 1
+    fi
+  fi
+}
+
+# DNF Group Install
+installDnfGroup(){
+  if dnf group info "$1" 2>/dev/null | grep -q "Installed"; then
+    logAlreadyInstall "group: $1"
+  else
+    if sudo dnf group install -y "$1" &>/dev/null; then
+      logPassInstall "group: $1"
+    else
+      logFailInstall "group: $1"
+      exit 1
+    fi
+  fi
+}
+
 
 # =======> Adding custom shortcuts
 SCHEMA="org.gnome.settings-daemon.plugins.media-keys"

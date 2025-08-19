@@ -5,7 +5,7 @@ source ./Scripts/common.sh
 
 # Hardcoded paths
 SRC="./Assets/Wallpapers"
-DEST="$HOME/.local/share/backgrounds"
+DEST="$HOME/.local/share/backgrounds/nalindu-dotfiles"
 
 # Create destination folder if not exists
 mkdir -p "$DEST"
@@ -18,7 +18,7 @@ TARGET="$DEST/Background"
 URI="file://$TARGET"
 
 # Set GNOME wallpaper (light & dark)
-gsettings set org.gnome.desktop.background picture-uri "$URI-4.png"
+gsettings set org.gnome.desktop.background picture-uri "$URI-3.png"
 gsettings set org.gnome.desktop.background picture-uri-dark "$URI-3.png"
 
 logPass "Wallpapers successfully added"

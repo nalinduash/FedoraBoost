@@ -81,7 +81,7 @@ logInfo "Speeding-up DNF"
 
 # Enabaling RPM fusion Repos
 logInfo "Enabaling RPM fusion Repos";
-source "./Scripts/rpmFusionRepo.sh"
+source "./Scripts/repos.sh"
 
 # Update system
 logInfo "Updating the system";
@@ -90,6 +90,10 @@ sudo dnf update && sudo dnf upgrade
 # Adding Shortcut key combinations
 logInfo "Adding Shortcut key combinations";
 source ./Scripts/shortcuts.sh; 
+
+# Some system tweaks
+logInfo "Performing some System Tweaks";
+source ./Scripts/systemTweaks.sh.sh; 
 
 # Theming Desktop
 source ./Scripts/theming.sh; 

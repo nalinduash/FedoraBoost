@@ -25,7 +25,15 @@ else
     logAlreadyInstall "RPM Fusion Non-Free repository";
 fi
 
+
+# Add flatpak repo
+if flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo; then
+    logPass "Flathub repo added"
+else
+    logFail "Flathub repo installation failed"
+fi
+
 # Summary
-logSummary "Free and Non-free Repo Installation";
+logSummary "Free and Non-free and flatpak Repos Installation";
 logPass "All Repos Successfully installed";
 br

@@ -40,6 +40,7 @@ install_extension "mediacontrols@cliffniff.github.com"
 install_extension "tiling-assistant@leleat-on-github"
 install_extension "tophat@fflewddur.github.io"
 install_extension "user-theme@gnome-shell-extensions.gcampax.github.com"
+install_extension "azwallpaper@azwallpaper.gitlab.com"
 
 # Compile gsettings schemas in order to be able to set them
 sudo cp ~/.local/share/gnome-shell/extensions/appindicatorsupport@rgcjonas.gmail.com/schemas/org.gnome.shell.extensions.appindicator.gschema.xml /usr/share/glib-2.0/schemas/
@@ -53,6 +54,7 @@ sudo cp ~/.local/share/gnome-shell/extensions/mediacontrols@cliffniff.github.com
 sudo cp ~/.local/share/gnome-shell/extensions/tiling-assistant@leleat-on-github/schemas/org.gnome.shell.extensions.tiling-assistant.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io/schemas/org.gnome.shell.extensions.tophat.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com/schemas/org.gnome.shell.extensions.user-theme.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/azwallpaper@azwallpaper.gitlab.com/schemas/org.gnome.shell.extensions.azwallpaper.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/ 2>/dev/null
 
 
@@ -78,5 +80,12 @@ gsettings set org.fedorahosted.background-logo-extension logo-position 'bottom-r
 gsettings set org.fedorahosted.background-logo-extension logo-size 8
 gsettings set org.fedorahosted.background-logo-extension logo-border 25
 gsettings set org.fedorahosted.background-logo-extension logo-always-visible true
+
+# Changing settings of Wallpaper Slideshow
+WALL_LOCATION="$HOME/.local/share/backgrounds/nalindu-dotfiles"
+mkdir -p "$WALL_LOCATION"
+gsettings set org.gnome.shell.extensions.azwallpaper slideshow-directory "$WALL_LOCATION"
+gsettings set org.gnome.shell.extensions.azwallpaper slideshow-slide-duration "(24, 0, 0)"
+gsettings set org.gnome.shell.extensions.azwallpaper slideshow-use-absolute-time-for-duration true
 
 
