@@ -31,11 +31,16 @@ fi
 
 # Change default shell to Fish
 logInfo "Changing default shell to Fish..."
-if ! chsh -s "$(which fish)"; then
-    logError "Failed to change default shell to Fish."
-    exit 1
+CURRENT_SHELL=$(basename "$SHELL")
+if [ "$CURRENT_SHELL" = "fish" ]; then
+    logPass "Default shell is already fish 🐟. Skipping shell change."
+else
+    if ! chsh -s "$(which fish)"; then
+        logError "Failed to change default shell to Fish."
+        exit 1
+    fi
+    logPass "Shell changed to Fish successfully."
 fi
-logPass "Shell changed to Fish successfully."
 
 # Backup and copy fastfetch config
 if [ -d ~/.config/fastfetch ]; then

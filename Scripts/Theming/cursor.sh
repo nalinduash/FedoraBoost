@@ -9,6 +9,11 @@ INSTALL_DIR="$HOME/.local/share/icons"
 DEFAULT_THEME_NAME="Graphite-dark-nord-cursors"
 TEMP_DIR="./Temp/Cursor/"
 
+# Check if the theme already applied
+if gsettings set org.gnome.desktop.interface cursor-theme "$DEFAULT_THEME_NAME"; then
+    return
+fi
+
 # Clone repo
 logInfo "Cloning repo into $TEMP_DIR"
 rm -rf "$TEMP_DIR"

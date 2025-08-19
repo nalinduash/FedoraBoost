@@ -8,6 +8,12 @@ THEME_REPO="https://github.com/vinceliuice/grub2-themes.git"
 THEME_NAME="vimix"
 TEMP_DIR="./Temp/GRUB/"
 
+# Check if theme already installed
+if [ -f "/boot/grub2/themes/$THEME_NAME/theme.txt" ]; then
+    logAlreadyInstall "Vimix theme"
+    exit 0
+fi
+
 installPackages grub2-tools
 
 # Clone repo

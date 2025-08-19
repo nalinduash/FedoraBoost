@@ -6,7 +6,7 @@
 #                       |
 #                       V
 script_path="$(pwd)"
-backup_dir="$HOME/old_dotfiles"
+backup_dir="$HOME/old_dotfiles$(date +"%Y-%m-%d_%H-%M-%S")"
 
 
 
