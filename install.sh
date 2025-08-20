@@ -93,7 +93,7 @@ source ./Scripts/shortcuts.sh;
 
 # Some system tweaks
 logInfo "Performing some System Tweaks";
-source ./Scripts/systemTweaks.sh.sh; 
+source ./Scripts/systemTweaks.sh; 
 
 # Theming Desktop
 source ./Scripts/theming.sh; 

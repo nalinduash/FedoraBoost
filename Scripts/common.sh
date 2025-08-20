@@ -177,6 +177,18 @@ installDnfGroup(){
 }
 
 
+# =======> Run Commands and log 
+runCmd() { #Cmd, description
+  if eval "$1"; then
+    logPass "$2"
+  else
+    logFail "$2"
+    exit 1
+  fi
+}
+
+
+
 # =======> Adding custom shortcuts
 SCHEMA="org.gnome.settings-daemon.plugins.media-keys"
 SUBSCHEMA="$SCHEMA.custom-keybinding"
