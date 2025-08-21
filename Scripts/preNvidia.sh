@@ -1,1 +1,0 @@
-# Add code to enable secure boot if available

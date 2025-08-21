@@ -83,6 +83,10 @@ add_configs() {
 
 # =======> Installing packages if not installed
 installPackages(){
+  if [[ -z "$1" ]]; then
+    logInfo "No packages are provided to install"
+    return 0
+  fi
   if rpm -q "$1" &>/dev/null; then
     logAlreadyInstall "$1";
   else

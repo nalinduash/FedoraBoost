@@ -87,6 +87,14 @@ source "./Scripts/repos.sh"
 logInfo "Updating the system";
 sudo dnf update && sudo dnf upgrade   
 
+# Secure boot
+logInfo "Handle Secure Boot for nvidia drivers";
+sudo ./Scripts/secureboot.sh;                       # Need sudo privilages here
+
+# Installing Nvidia drivers
+logInfo "Installing Nvidia drivers";
+source ./Scripts/nvidia.sh;
+
 # Adding Shortcut key combinations
 logInfo "Adding Shortcut key combinations";
 source ./Scripts/shortcuts.sh; 
