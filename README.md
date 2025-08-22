@@ -1,3 +1,5 @@
+![Fedoraboost logo](logo.png)
+
 # 🐧 FedoraBoost
 
 Welcome to **FedoraBoost** — an open-source collection of scripts to **automate your Fedora Linux post-install setup**. Think of it as your one-stop toolkit for drivers, tweaks, theming, and more 🚀.
