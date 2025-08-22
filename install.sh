@@ -95,6 +95,10 @@ sudo ./Scripts/secureboot.sh;                       # Need sudo privilages here
 logInfo "Installing Nvidia drivers";
 source ./Scripts/nvidia.sh;
 
+# Install Apps
+logInfo "Installing Nvidia drivers";
+source ./Scripts/apps.sh;
+
 # Adding Shortcut key combinations
 logInfo "Adding Shortcut key combinations";
 source ./Scripts/shortcuts.sh; 
