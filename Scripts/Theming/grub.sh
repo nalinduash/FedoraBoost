@@ -20,7 +20,7 @@ installPackages grub2-tools
 logInfo "Cloning repo into $TEMP_DIR"
 rm -rf "$TEMP_DIR"
 mkdir -p "$TEMP_DIR"
-git clone "$THEME_REPO" "$TEMP_DIR"
+git clone --depth=1 "$THEME_REPO" "$TEMP_DIR"
 
 logInfo "Installing theme into /boot/grub2/themes/$THEME_NAME..."
 sudo mkdir -p /boot/grub2/themes

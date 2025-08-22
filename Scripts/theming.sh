@@ -27,6 +27,10 @@ source ./Scripts/Theming/fonts.sh;
 logInfo "Adding cursor";
 source ./Scripts/Theming/cursor.sh; 
 
+# Icons
+logInfo "Adding Icons";
+source ./Scripts/Theming/icons.sh;
+
 # GRUB
 logInfo "Adding GRUB theme";
 source ./Scripts/Theming/grub.sh; 

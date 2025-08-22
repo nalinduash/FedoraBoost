@@ -86,3 +86,9 @@ if echo "$sb_state" | grep -qi 'disabled'; then
   logInfo "Secure Boot is currently disabled in firmware."
   logInfo "After enrolling the MOK, enable Secure Boot in your BIOS/UEFI to enforce module signing."
 fi
+
+# Rebooting for enrollment
+logInfo "Rebooting"
+gum confirm "Run this script again to continue"
+sleep 5
+reboot
