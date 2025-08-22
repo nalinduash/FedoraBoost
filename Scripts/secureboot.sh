@@ -90,5 +90,4 @@ fi
 # Rebooting for enrollment
 logInfo "Rebooting"
 gum confirm "Run this script again to continue"
-sleep 5
 reboot
