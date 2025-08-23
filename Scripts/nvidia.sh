@@ -45,11 +45,21 @@ case $DRIVER in
         installPackages "akmod-nvidia-470xx"
         installPackages "xorg-x11-drv-nvidia-470xx"
         installPackages "$CUDA_PACKAGE"
+
+        # VDPAU/VAAPI
+        installPackages "nvidia-vaapi-driver"
+        installPackages "libva-utils"
+        installPackages "vdpauinfo"
         ;;
     "390xx")
         installPackages "akmod-nvidia-390xx"
         installPackages "xorg-x11-drv-nvidia-390xx"
         installPackages "$CUDA_PACKAGE"
+
+        # VDPAU/VAAPI
+        installPackages "nvidia-vaapi-driver"
+        installPackages "libva-utils"
+        installPackages "vdpauinfo"
         ;;
     "340xx")
         # For newer Fedora, enable longterm kernel support
@@ -66,11 +76,20 @@ case $DRIVER in
         installPackages "akmod-nvidia"
         installPackages "xorg-x11-drv-nvidia"
         installPackages "$CUDA_PACKAGE"
+        installPackages "xorg-x11-drv-nvidia-cuda-libs"
+
+        # VDPAU/VAAPI
+        installPackages "nvidia-vaapi-driver"
+        installPackages "libva-utils"
+        installPackages "vdpauinfo"
         ;;
 esac
 
 # Mark driver to prevent accidental removal
 sudo dnf mark user akmod-nvidia*
+
+# Install Vulkan
+installPackages "vulkan"
 
 # Blacklist nouveau to avoid conflicts
 sudo touch "/etc/modprobe.d/blacklist-nouveau.conf"
