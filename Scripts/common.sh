@@ -269,3 +269,12 @@ add_shortcut_if_missing() {
   gsettings set "$SUBSCHEMA:$p" binding "$bind"
   logPass "✔ Added: $bind → $name"
 }
+
+
+# =======> File Manipulation
+delete_file_if_exists() {
+    local file="$1"
+    if [[ -e "$file" ]]; then
+        rm -f "$file" && logPass "Deleted: $file" || logFail "Failed to delete: $file"
+    fi
+}

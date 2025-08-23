@@ -7,8 +7,10 @@ source ./Scripts/common.sh
 
 logInfo "Installing common apps through DNF"
 
-installPackages "libreoffice"
-installPackages "ark"
+installPackages "libreoffice"                           # Office suit
+installPackages "ark"                                   # Compress and decompress files
+installPackages "obs-studio"                            # Record screen and stream
+installPackages "kmod-v4l2loopback"                     # Virtual camera support for Obs-studio
 
 
 

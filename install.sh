@@ -68,6 +68,7 @@ logMessage "Starting customization...";
 
 # Adding some needed packages for the installation
 logInfo "Adding some needed packages for the installation"
+installPackages "curl"
 
 
 # Stop sleeping and locking during the installation
