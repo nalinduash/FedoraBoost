@@ -9,7 +9,7 @@ INSTALL_DIR="$HOME/.themes"
 TEMP_DIR="./Temp/Nordic"
 
 # Check if theme already installed
-current_theme=$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \")
+current_theme=$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \')
 if [[ $current_theme == "Nordic" ]]; then
     logAlreadyInstall "Nordic GTK theme"
     logPass "Skipping..."

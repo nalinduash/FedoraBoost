@@ -33,4 +33,4 @@ source ./Scripts/Theming/icons.sh;
 
 # GRUB
 logInfo "Adding GRUB theme";
-source ./Scripts/Theming/grub.sh; 
+sudo ./Scripts/Theming/grub.sh; 

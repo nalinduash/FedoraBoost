@@ -24,7 +24,7 @@ mkdir -p "$TEMP_DIR"
 git clone --depth=1 "$THEME_REPO" "$TEMP_DIR"
 
 logInfo "Installing theme into /boot/grub2/themes/$THEME_NAME..."
-sudo mkdir -p /boot/grub2/themes
-sudo "$TEMP_DIR/install.sh" -b -t "$THEME_NAME" -i white
+mkdir -p /boot/grub2/themes
+"$TEMP_DIR/install.sh" -b -t "$THEME_NAME" -i white
 
 logPass "Vimix GRUB theme installed successfully!"

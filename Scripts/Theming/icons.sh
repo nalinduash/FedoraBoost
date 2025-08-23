@@ -10,7 +10,7 @@ THEME="brown"
 
 # Check if theme already installed
 current_theme=$(gsettings get org.gnome.desktop.interface icon-theme)
-if [[ $current_theme == "\"Tela-$THEME\"" ]]; then
+if [[ $current_theme == "\'Tela-$THEME\'" ]]; then
     logAlreadyInstall "Tela Icon theme"
     logPass "Skipping..."
     return 0
