@@ -12,12 +12,11 @@ sudo dnf group upgrade -y core
 # ======> Update firmware
 logInfo "Update firmware"
 runCmd "fwupdmgr refresh --force" "Refresh firmware updates"
-runCmd "ssudo fwupdmgr update -y || true" "Update firmware"
+runCmd "sudo fwupdmgr update -y || true" "Update firmware"
  
 
 # ======> For appimages
 installPackages "fuse"                              # To open AppImages
-installFlatpakPackage "it.mijorus.gearlever"        # Manage AppImages
 
 
 # ======> Media Codecs
