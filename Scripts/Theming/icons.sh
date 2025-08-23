@@ -9,10 +9,11 @@ TEMP_DIR="./Temp/Icons"
 THEME="brown"
 
 # Check if theme already installed
-if [[ gsettings get org.gnome.desktop.interface icon-theme == "Tela-$THEME" ]];then
+current_theme=$(gsettings get org.gnome.desktop.interface icon-theme)
+if [[ $current_theme == "\"Tela-$THEME\"" ]]; then
     logAlreadyInstall "Tela Icon theme"
     logPass "Skipping..."
-    return 0 
+    return 0
 fi
 
 # Step 1: Install required dependencies
