@@ -88,6 +88,8 @@ if echo "$sb_state" | grep -qi 'disabled'; then
 fi
 
 # Rebooting for enrollment
-logInfo "Rebooting"
-gum confirm "Run this script again to continue"
-reboot
+if [[ "$needs_enroll" == true ]]; then
+  logInfo "Rebooting"
+  gum confirm "Run this script again to continue"
+  reboot
+fi
