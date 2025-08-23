@@ -8,6 +8,13 @@ REPO_URL="https://github.com/vinceliuice/Tela-icon-theme.git"
 TEMP_DIR="./Temp/Icons"
 THEME="brown"
 
+# Check if theme already installed
+if [[ gsettings get org.gnome.desktop.interface icon-theme == "Tela-$THEME" ]];then
+    logAlreadyInstall "Tela Icon theme"
+    logPass "Skipping..."
+    return 0 
+fi
+
 # Step 1: Install required dependencies
 installPackages unzip 
 installPackages wget
@@ -18,8 +25,7 @@ mkdir -p "$TEMP_DIR"
 git clone --depth=1 "$REPO_URL" "$TEMP_DIR"
 
 # Step 3: Install 
-cd "$TEMP_DIR"
-./install.sh "$THEME" 
+$TEMP_DIR/install.sh "$THEME" 
 
 # Update Icon cache
 for theme_dir in "$INSTALL_DIR"/Tela-"$THEME"*; do

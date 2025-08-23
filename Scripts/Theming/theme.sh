@@ -8,6 +8,13 @@ REPO_URL="https://github.com/EliverLara/Nordic.git"
 INSTALL_DIR="$HOME/.themes"
 TEMP_DIR="./Temp/Nordic"
 
+# Check if theme already installed
+if [[ gsettings get org.gnome.desktop.interface gtk-theme == "Nordic" ]];then
+    logAlreadyInstall "Nordic Icon theme"
+    logPass "Skipping..."
+    return 0 
+fi
+
 # Step 1: Dependencies (GNOME dev lib for GTK on Fedora)
 installPackages gtk-murrine-engine 
 installPackages gtk2-engines

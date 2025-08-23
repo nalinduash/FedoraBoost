@@ -11,7 +11,8 @@ TEMP_DIR="./Temp/GRUB/"
 # Check if theme already installed
 if [ -f "/boot/grub2/themes/$THEME_NAME/theme.txt" ]; then
     logAlreadyInstall "Vimix theme"
-    exit 0
+    logPass "Skipping..."
+    return 0
 fi
 
 installPackages grub2-tools

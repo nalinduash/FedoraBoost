@@ -74,6 +74,7 @@ gsettings set org.gnome.shell.extensions.dash2dock-lite trash-icon true
 gsettings set org.gnome.shell.extensions.tophat cpu-display 'numeric'
 gsettings set org.gnome.shell.extensions.tophat mem-abs-units true
 gsettings set org.gnome.shell.extensions.tophat mem-display 'numeric'
+gsettings set org.gnome.shell.extensions.tophat meter-fg-color 'rgb(113,146,148)'
 
 # Changing settings of Background logo
 gsettings set org.fedorahosted.background-logo-extension logo-position 'bottom-right'
