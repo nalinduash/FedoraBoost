@@ -31,6 +31,10 @@ source ./Scripts/Theming/cursor.sh;
 logInfo "Adding Icons";
 source ./Scripts/Theming/icons.sh;
 
+# Theme
+logInfo "Adding Theme";
+source ./Scripts/Theming/theme.sh;
+
 # GRUB
 logInfo "Adding GRUB theme";
 sudo ./Scripts/Theming/grub.sh; 
