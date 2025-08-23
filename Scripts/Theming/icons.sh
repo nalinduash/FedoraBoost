@@ -8,9 +8,8 @@ REPO_URL="https://github.com/vinceliuice/Tela-icon-theme.git"
 TEMP_DIR="./Temp/Icons"
 THEME="brown"
 
-# Check if theme already installed
-current_theme=$(gsettings get org.gnome.desktop.interface icon-theme)
-if [[ $current_theme == "\'Tela-$THEME\'" ]]; then
+current_theme=$(gsettings get org.gnome.desktop.interface icon-theme | tr -d "'")
+if [[ $current_theme == "Tela-$THEME" ]]; then
     logAlreadyInstall "Tela Icon theme"
     logPass "Skipping..."
     return 0

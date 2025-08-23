@@ -13,7 +13,7 @@ current_theme=$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \')
 if [[ $current_theme == "Nordic" ]]; then
     logAlreadyInstall "Nordic GTK theme"
     logPass "Skipping..."
-    return 0
+    return 
 fi
 
 # Step 1: Dependencies (GNOME dev lib for GTK on Fedora)
