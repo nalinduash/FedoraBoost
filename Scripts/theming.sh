@@ -3,38 +3,43 @@
 # Importing SH files
 source ./Scripts/common.sh;
 
+logScriptHead "Customizing the desktop for a better user experience"
+
 # Installing Fish Shell and customizing it
-logInfo "Installing Fish Shell and customizing it";
+logScriptSubHead "Installing Fish Shell and customizing it";
 source ./Scripts/Theming/fish.sh; 
 
 # Wallpapers
-logInfo "Adding wallpapers";
+logScriptSubHead "Adding wallpapers";
 source ./Scripts/Theming/wallpapers.sh; 
 
 # Installing Gnome Shell Extensions
-logInfo "Installing Gnome Shell extensions";
+logScriptSubHead "Installing Gnome Shell extensions";
 source ./Scripts/Theming/extensions.sh; 
 
 # Change Gnome settings
-logInfo "Changing Gnome settings";
+logScriptSubHead "Changing Gnome settings";
 source ./Scripts/Theming/gnome_settings.sh; 
 
 # Fonts
-logInfo "Adding fonts";
+logScriptSubHead "Adding fonts";
 source ./Scripts/Theming/fonts.sh; 
 
 # Cursor
-logInfo "Adding cursor";
+logScriptSubHead "Adding cursor";
 source ./Scripts/Theming/cursor.sh; 
 
 # Icons
-logInfo "Adding Icons";
+logScriptSubHead "Adding Icons";
 source ./Scripts/Theming/icons.sh;
 
 # Theme
-logInfo "Adding Theme";
+logScriptSubHead "Adding Theme";
 source ./Scripts/Theming/theme.sh;
 
 # GRUB
-logInfo "Adding GRUB theme";
+logScriptSubHead "Adding GRUB theme";
 sudo ./Scripts/Theming/grub.sh; 
+
+logDone
+br5

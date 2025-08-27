@@ -12,28 +12,32 @@ TEMP_DIR="./Temp/Nordic"
 current_theme=$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \')
 if [[ $current_theme == "Nordic" ]]; then
     logAlreadyInstall "Nordic GTK theme"
-    logPass "Skipping..."
     return 
 fi
 
 # Step 1: Dependencies (GNOME dev lib for GTK on Fedora)
+logScriptMiniSubHead "Installing some dependencies"
 installPackages gtk-murrine-engine 
 installPackages gtk2-engines
 
 # Step 2: Clone repo 
+logScriptMiniSubHead "Cloning the repo"
 mkdir -p "$TEMP_DIR"
 mkdir -p "$INSTALL_DIR"
-rm -rf "$TEMP_DIR"
+delete_folder_if_exists "$TEMP_DIR"
 git clone --depth=1 "$REPO_URL" "$TEMP_DIR"
 
 # Step 3: Install 
-rm -rf "$INSTALL_DIR/Nordic"*
+logScriptMiniSubHead "Installing"
+delete_folder_if_exists "$INSTALL_DIR/Nordic"*
 cp -r "$TEMP_DIR" "$INSTALL_DIR"
 
 
 # Apply GTK theme for GNOME immediately
+logScriptMiniSubHead "Applying the GTK theme"
 gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
 gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
 
 # Cleaning up
-rm -rf "$TEMP_DIR" 
+logScriptMiniSubHead "Cleaning up"
+delete_folder_if_exists "$TEMP_DIR" 

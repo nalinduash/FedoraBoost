@@ -19,7 +19,7 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 # Cache the sudo privilages so, user only need to enter password one time.
-logMessage "Enter your password to begin customizations..."
+logHighlight "Enter your password to begin customizations..."
 sudo -v
 
 # Keep sudo credentials alive in the background
@@ -64,48 +64,22 @@ fi
     
 # ====================Start======================
 clear;
-logMessage "Starting customization...";
-
-# Adding some needed packages for the installation
-logInfo "Adding some needed packages for the installation"
-installPackages "curl"
-
-
-# Stop sleeping and locking during the installation
-gsettings set org.gnome.desktop.screensaver lock-enabled false
-gsettings set org.gnome.desktop.session idle-delay 0
-
-# Speedup DNF installation
-add_configs "/etc/dnf/dnf.conf" "max_parallel_downloads=10"
-add_configs "/etc/dnf/dnf.conf" "fastestmirror=True"
-logInfo "Speeding-up DNF"
-
-# Enabaling RPM fusion Repos
-logInfo "Enabaling RPM fusion Repos";
-source ./Scripts/repos.sh;
-
-# Update system
-logInfo "Updating the system";
-sudo dnf update && sudo dnf upgrade   
+# Prepare system to run this script
+source ./Scripts/prepare.sh; 
 
 # Secure boot
-logInfo "Handle Secure Boot for nvidia drivers";
 sudo ./Scripts/secureboot.sh;                       # Need sudo privilages here
 
 # Installing Nvidia drivers
-logInfo "Installing Nvidia drivers";
 source ./Scripts/nvidia.sh;
 
 # Install Apps
-logInfo "Installing Nvidia drivers";
 source ./Scripts/apps.sh;
 
 # Adding Shortcut key combinations
-logInfo "Adding Shortcut key combinations";
 source ./Scripts/shortcuts.sh; 
 
 # Some system tweaks
-logInfo "Performing some System Tweaks";
 source ./Scripts/systemTweaks.sh; 
 
 # Theming Desktop

@@ -5,7 +5,7 @@ source ./Scripts/common.sh
 
 
 
-logInfo "Installing common apps through DNF"
+logScriptMiniSubHead "Installing common apps through DNF"
 
 installPackages "libreoffice"                           # Office suit
 installPackages "ark"                                   # Compress and decompress files
@@ -14,7 +14,7 @@ installPackages "kmod-v4l2loopback"                     # Virtual camera support
 
 
 
-logInfo "Installing common apps through Flatpak"
+logScriptMiniSubHead "Installing common apps through Flatpak"
 installFlatpakPackage "us.zoom.Zoom"                    # Online meeting app
 installFlatpakPackage "io.missioncenter.MissionCenter"  # System monitor
 installFlatpakPackage "it.mijorus.gearlever"            # Manage AppImages

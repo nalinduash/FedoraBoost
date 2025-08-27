@@ -3,7 +3,10 @@
 # Importing SH files
 source ./Scripts/common.sh
 
+logScriptHead "Installing Nvidia drivers(optional)"
+
 # Detect NVIDIA GPU
+logScriptSubHead "Detecting NVIDIA GPU"
 GPU_MODEL=$(lspci | grep -i nvidia | awk -F ': ' '{print $2}')
 
 # Determine driver version
@@ -30,11 +33,13 @@ if [[ $GPU_MODEL =~ "GeForce" ]]; then
     fi
 else
     logPass "No Nvdia card found. Skipping"
+    logDone
+    br5
     return 0
 fi
 
-echo "Detected GPU: $GPU_MODEL"
-echo "Installing NVIDIA driver version: $DRIVER"
+logData "Detected GPU: $GPU_MODEL"
+logScriptSubHead "Installing NVIDIA driver version: $DRIVER"
 
 installPackages "kernel-headers"
 installPackages "kernel-devel"
@@ -86,12 +91,18 @@ case $DRIVER in
 esac
 
 # Mark driver to prevent accidental removal
+logScriptSubHead "Marking driver to prevent accidental removal"
 sudo dnf mark user akmod-nvidia*
 
 # Install Vulkan
+logScriptSubHead "Installing Vulkan"
 installPackages "vulkan"
 
 # Blacklist nouveau to avoid conflicts
+logScriptSubHead "Blacklisting nouveau to avoid conflicts"
 sudo touch "/etc/modprobe.d/blacklist-nouveau.conf"
 add_configs "/etc/modprobe.d/blacklist-nouveau.conf" "blacklist nouveau" 
 sudo dracut --force
+
+logDone
+br5

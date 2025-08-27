@@ -16,6 +16,59 @@ backup_dir="$HOME/old_dotfiles$(date +"%Y-%m-%d_%H-%M-%S")"
 #                       |
 #                       V
 
+logScriptHead(){
+    echo -e "\e[33m🥸 -> $1\e[0m";
+}
+
+logScriptSubHead(){
+    echo -e "";
+    echo -e "\e[33m   👉 $1\e[0m";
+}
+
+logInfo(){
+    echo -e "\e[0m     ℹ️ $1";
+}
+
+logScriptMiniSubHead(){
+    echo -e "\e[33m     🫳 $1\e[0m";
+}
+
+logMiniInfo(){
+    echo -e "\e[0m       ℹ️ $1";
+}
+
+logPass(){
+    echo -e "\e[32m     ✅ $1\e[0m";
+}
+
+logFail(){
+    echo -e "\e[31m     ❎ $1\e[0m";
+}
+
+logAlreadyInstall() {
+    echo -e "\e[32m     ✅ $1 is already installed\e[0m";
+}
+
+logPassInstall() {
+    echo -e "\e[32m     ✅ Successfully installed $1\e[0m";
+}
+
+logFailInstall() {
+    echo -e "\e[31m     ❎ Failed to install $1\e[0m";
+}
+
+logHighlight(){
+    echo -e "\e[43m$1\e[0m";
+}
+
+logData(){
+    echo -e "\e[0m$1";
+}
+
+logDone(){
+    echo -e "\e[32m☑️ Done \e[0m";
+}
+
 logWarning() {
     echo -e "";
     echo -e "\e[31mWarning !!!";
@@ -30,39 +83,25 @@ logError() {
 
 logMessage() {
     echo -e "";
+    echo -e "Message:";
     echo -e "\e[33m🥸 -> $1\e[0m";
-}
-
-logInfo() {
-    echo -e "\e[0m$1 🥸";
 }
 
 br() {
     echo -e "";
 }
 
-logAlreadyInstall() {
-    echo -e "\e[32m✓ $1 is already installed\e[0m";
-}
-
-logPassInstall() {
-    echo -e "\e[32m✓ Successfully installed $1\e[0m";
-}
-
-logFailInstall() {
-    echo -e "\e[31m✗ Failed to install $1\e[0m";
+br5(){
+    echo -e "";
+    echo -e "";
+    echo -e "";
+    echo -e "";
+    echo -e "";
 }
 
 logSummary() {
     echo -e "";
     echo -e "\e[36m=== $1 Summary ===\e[0m";
-}
-
-logPass(){
-    echo -e "\e[32m$1\e[0m";
-}
-logFail(){
-    echo -e "\e[31m$1\e[0m";
 }
 
 
@@ -276,5 +315,12 @@ delete_file_if_exists() {
     local file="$1"
     if [[ -e "$file" ]]; then
         rm -f "$file" && logPass "Deleted: $file" || logFail "Failed to delete: $file"
+    fi
+}
+
+delete_folder_if_exists() {
+    local folder="$1"
+    if [[ -d "$folder" ]]; then
+        rm -rf "$folder" && logPass "Deleted: $folder" || logFail "Failed to delete: $folder"
     fi
 }

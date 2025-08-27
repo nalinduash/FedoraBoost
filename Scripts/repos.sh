@@ -28,12 +28,12 @@ fi
 
 # Add flatpak repo
 if flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo; then
-    logPass "Flathub repo added"
+    logPassInstall "Flathub repo"
 else
-    logFail "Flathub repo installation failed"
+    logFailInstall "Flathub repo installation failed"
 fi
 
 # Summary
-logSummary "Free and Non-free and flatpak Repos Installation";
+logSummary "Free, Non-free and flatpak Repos Installation";
 logPass "All Repos Successfully installed";
 br

@@ -4,6 +4,7 @@
 source ./Scripts/common.sh
 
 # Install oh-my-posh 
+logScriptMiniSubHead "Installing oh-my-posh" 
 if ! command -v oh-my-posh &> /dev/null; then
     curl -s https://ohmyposh.dev/install.sh | bash -s
     logPassInstall "oh-my-posh"
@@ -30,9 +31,11 @@ installFonts() {
 }
 
 # Downloading fonts
+logScriptMiniSubHead "Downloading fonts"
 installFonts "JetBrainsMono"
 
 # Setting fonts in gnome
+logScriptMiniSubHead "Applying fonts"
 gsettings set org.gnome.desktop.interface font-name "Adwaita Sans Regular 11"
 gsettings set org.gnome.desktop.interface document-font-name "Adwaita Sans Regular 11"
 gsettings set org.gnome.desktop.interface monospace-font-name "JetBrainsMono Nerd Font Regular 12"

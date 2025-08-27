@@ -3,5 +3,13 @@
 # Importing SH files
 source ./Scripts/common.sh
 
-logInfo "Installing common apps"
+logScriptHead "Installing Apps"
+
+logScriptSubHead "Installing common apps"
 source "./Scripts/Apps/commonApps.sh"
+
+logScriptSubHead "Installing apps with customizations"
+source "./Scripts/Apps/vlc.sh"
+
+logDone
+br5
