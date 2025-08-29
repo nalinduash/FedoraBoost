@@ -101,7 +101,7 @@ br5(){
 
 logSummary() {
     echo -e "";
-    echo -e "\e[36m=== $1 Summary ===\e[0m";
+    echo -e "\e[36m     === $1 Summary ===\e[0m";
 }
 
 
@@ -154,6 +154,16 @@ addRepo(){
 installPipPackages() {
   if ! command -v pip3 &> /dev/null; then
     installPackages "python3-pip"
+    if pip3 show "$1" &> /dev/null; then
+      logPass "$1 pip packages is already installed" 
+    else
+      pip3 install --upgrade $1
+      if pip3 show "$1" &> /dev/null; then
+        logPass "$1 pip package installed." 
+      else
+        logFail "$1 pip package is not installed." 
+      fi
+    fi
   else
     if pip3 show "$1" &> /dev/null; then
       logPass "$1 pip packages is already installed" 
