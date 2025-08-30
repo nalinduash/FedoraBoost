@@ -232,7 +232,7 @@ installDnfGroup(){
 
 # =======> Run Commands and log 
 runCmd() { #Cmd, description
-  if eval "$1"; then
+  if eval "$1" &>/dev/null; then
     logPass "$2"
   else
     logFail "$2"

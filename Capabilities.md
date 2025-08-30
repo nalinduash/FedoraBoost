@@ -15,7 +15,6 @@ This script automates the post-installation setup of Fedora with a focus on perf
 * ☑️ Install Intel drivers *(Optional)*
 * ✅ Set UTC time for dual boot systems
 * ✅ Disable `NetworkManager-wait-online.service` to speed up booting
-* ✅ Update firmware
 
 ## 💻 Applications & Codecs
 

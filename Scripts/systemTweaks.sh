@@ -7,13 +7,7 @@ logScriptHead "Performing some System Tweaks";
 
 # ======> Update core
 logScriptSubHead "Updating the core of Fedora"
-sudo dnf group upgrade -y core
-
-
-# ======> Update firmware
-logScriptSubHead "Updating firmware"
-runCmd "fwupdmgr refresh --force" "Refreshing firmware updates"
-runCmd "sudo fwupdmgr update -y || true" "Updating firmware"
+runCmd "sudo dnf group upgrade -y core" "Updating the core of Fedora"
  
 
 # ======> For appimages
