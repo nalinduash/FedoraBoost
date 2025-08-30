@@ -306,7 +306,7 @@ add_shortcut_if_missing() {
   local name="$1" cmd="$2" bind="$3"
   get_existing
   if shortcut_exists "$cmd" "$bind"; then
-    logPass "✔ Already present: $bind → $name"
+    logPass "Already present: $bind → $name"
     return 0
   fi
   local idx; idx="$(get_next_index)"
@@ -316,7 +316,7 @@ add_shortcut_if_missing() {
   gsettings set "$SUBSCHEMA:$p" name "$name"
   gsettings set "$SUBSCHEMA:$p" command "$cmd"
   gsettings set "$SUBSCHEMA:$p" binding "$bind"
-  logPass "✔ Added: $bind → $name"
+  logPass "Added: $bind → $name"
 }
 
 

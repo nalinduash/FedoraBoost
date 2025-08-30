@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Exit immediately if a command exits with a non-zero value
-set -e
+set -euo
 
 # Make every .sh file executable
 find . -name "*.sh" -type f -exec chmod +x {} \; -print

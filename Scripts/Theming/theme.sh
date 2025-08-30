@@ -22,10 +22,12 @@ installPackages gtk2-engines
 
 # Step 2: Clone repo 
 logScriptMiniSubHead "Cloning the repo"
+br
 mkdir -p "$TEMP_DIR"
 mkdir -p "$INSTALL_DIR"
 delete_folder_if_exists "$TEMP_DIR"
 git clone --depth=1 "$REPO_URL" "$TEMP_DIR"
+br
 
 # Step 3: Install 
 logScriptMiniSubHead "Installing"
@@ -37,6 +39,7 @@ cp -r "$TEMP_DIR" "$INSTALL_DIR"
 logScriptMiniSubHead "Applying the GTK theme"
 gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
 gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
+gsettings set org.gnome.shell.extensions.user-theme name "Nordic"
 
 # Cleaning up
 logScriptMiniSubHead "Cleaning up"

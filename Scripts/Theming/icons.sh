@@ -21,9 +21,11 @@ installPackages wget
 
 # Step 2: Clone repo fresh
 logScriptMiniSubHead "Cloning the repo"
+br
 delete_folder_if_exists "$TEMP_DIR"
 mkdir -p "$TEMP_DIR"
 git clone --depth=1 "$REPO_URL" "$TEMP_DIR"
+br
 
 # Step 3: Install 
 logScriptMiniSubHead "Installing"
