@@ -20,9 +20,11 @@ fi
 
 # Clone repo
 logScriptMiniSubHead "Cloning repo into $TEMP_DIR"
+br
 delete_folder_if_exists "$TEMP_DIR"
 mkdir -p "$TEMP_DIR"
 git clone "$REPO_URL" "$TEMP_DIR"
+br
 
 # Remove if already exists
 logScriptMiniSubHead "Removing if already exists"

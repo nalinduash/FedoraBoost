@@ -36,4 +36,3 @@ fi
 # Summary
 logSummary "Free, Non-free and flatpak Repos Installation";
 logPass "All Repos Successfully installed";
-br
