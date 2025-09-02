@@ -6,7 +6,7 @@
 #                       |
 #                       V
 script_path="$(pwd)"
-backup_dir="$HOME/old_dotfiles_$(date +"%Y-%m-%d_%H-%M-%S")"
+backup_dir="$HOME/old_dotfiles_$(date +"%Y-%m-%d")"
 log_dir="./Logs"
 log_path="$log_dir/log_$(date +"%Y-%m-%d_%H-%M-%S").txt"
 

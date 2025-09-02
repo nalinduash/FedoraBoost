@@ -9,6 +9,16 @@ installPackages "gnome-extensions-app"          # Manage Gnome extensions
 installPackages "gnome-tweaks"                  # Change Gnome appearance
 installPipPackages "gnome-extensions-cli"       # To install Gnome extensions
 
+# Backing up extension names
+logScriptMiniSubHead "Backing up extension names"
+uuids=$(gext list 2>/dev/null | grep -v "/system" | grep -Eo '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
+mkdir -p $backup_dir
+echo "$uuids" > "$backup_dir/gnome-extensions-list.txt"
+
+# Backing up extension configs
+logScriptMiniSubHead "Backing up extension configs"
+dconf dump /org/gnome/shell/extensions/ > "$backup_dir/gnome-extensions-settings.dconf"
+
 # Install Gnome extensions if they are not installed
 installed=$(gext list)
 install_extension() {
