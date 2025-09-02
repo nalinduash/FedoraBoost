@@ -14,7 +14,7 @@ current_theme=$(gsettings get org.gnome.desktop.interface cursor-theme | tr -d "
 
 # Check if the theme already applied
 if [[ "$current_theme" == "$DEFAULT_THEME_NAME" ]]; then
-    echo "Cursor theme already set to $DEFAULT_THEME_NAME"
+    logPass "Cursor theme already set to $DEFAULT_THEME_NAME"
     return 0
 fi
 

@@ -10,13 +10,23 @@ installPackages "gnome-tweaks"                  # Change Gnome appearance
 installPipPackages "gnome-extensions-cli"       # To install Gnome extensions
 
 # Install Gnome extensions if they are not installed
+installed=$(gext list)
 install_extension() {
-  if gext list | grep -q "$1"; then
-    logInfo "Extension already installed: $1"
-    gext enable "$1"
+  if echo "$installed" | grep -q "$1"; then
+    logAlreadyInstall "$1 Extension"
   else
-    gext install "$1"
-    gext enable "$1"
+    gext install "$1" &>/dev/null &
+    INSTALL_PID=$!
+	spinner "$INSTALL_PID" "Installing [$1]"
+    wait "$INSTALL_PID"
+    wait "$INSTALL_PID"
+    if [[ $? -eq 0 ]]; then
+      gext enable "$1" &>/dev/null
+      logPassInstall "$1"
+    else
+      logFailInstall "$1"
+      exit 1
+    fi
   fi
 }
 
@@ -33,6 +43,7 @@ gnome-extensions enable places-menu@gnome-shell-extensions.gcampax.github.com
 
 # Install new extensions
 logScriptMiniSubHead "Installing new extensions if not installed"
+br
 install_extension "appindicatorsupport@rgcjonas.gmail.com"
 install_extension "blur-my-shell@aunetx"
 install_extension "clipboard-indicator@tudmotu.com"

@@ -15,7 +15,7 @@ installPackages "kmod-v4l2loopback"                     # Virtual camera support
 
 
 logScriptMiniSubHead "Installing common apps through Flatpak"
-installFlatpakPackage "us.zoom.Zoom"                    # Online meeting app
-installFlatpakPackage "io.missioncenter.MissionCenter"  # System monitor
-installFlatpakPackage "it.mijorus.gearlever"            # Manage AppImages
+installFlatpakPackage "us.zoom.Zoom" "Zoom"                   			 # Online meeting app
+installFlatpakPackage "io.missioncenter.MissionCenter" "Mission Center"  # System monitor
+installFlatpakPackage "it.mijorus.gearlever" "Gear Lever"           	 # Manage AppImages
 

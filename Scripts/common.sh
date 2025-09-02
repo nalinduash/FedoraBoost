@@ -6,8 +6,9 @@
 #                       |
 #                       V
 script_path="$(pwd)"
-backup_dir="$HOME/old_dotfiles$(date +"%Y-%m-%d_%H-%M-%S")"
-
+backup_dir="$HOME/old_dotfiles_$(date +"%Y-%m-%d_%H-%M-%S")"
+log_dir="./Logs"
+log_path="$log_dir/log_$(date +"%Y-%m-%d_%H-%M-%S").txt"
 
 
 # Show Messages ---------
@@ -18,90 +19,104 @@ backup_dir="$HOME/old_dotfiles$(date +"%Y-%m-%d_%H-%M-%S")"
 
 logScriptHead(){
     echo -e "\e[33m🥸 -> $1\e[0m";
+	echo -e "🥸 -> $1" >> $log_path;
 }
 
 logScriptSubHead(){
-    echo -e "";
-    echo -e "\e[33m   👉 $1\e[0m";
+    echo -e "\n\e[33m   👉 $1\e[0m";
+	echo -e "\n   👉 $1" >> $log_path;
 }
 
 logInfo(){
     echo -e "\e[0m     ℹ️ $1";
+	echo -e "     ℹ️ $1" >> $log_path;
 }
 
 logScriptMiniSubHead(){
     echo -e "\e[33m     🫳 $1\e[0m";
+	echo -e "     🫳 $1" >> $log_path;
 }
 
 logMiniInfo(){
     echo -e "\e[0m       ℹ️ $1";
+	echo -e "       ℹ️ $1" >> $log_path;
 }
 
 logPass(){
-    echo -e "\e[32m     ✅ $1\e[0m";
+    echo -e "\e[32m     🟩 $1\e[0m";
+	echo -e "     🟩 $1" >> $log_path;
 }
 
 logFail(){
-    echo -e "\e[31m     ❎ $1\e[0m";
+    echo -e "\e[31m     🟥 $1\e[0m";
+	echo -e "     🟥 $1" >> $log_path;
 }
 
 logAlreadyInstall() {
-    echo -e "\e[32m     ✅ $1 is already installed\e[0m";
+    echo -e "\e[32m     🟩 $1 is already installed\e[0m";
+	echo -e "     🟩 $1 is already installed" >> $log_path;
 }
 
 logPassInstall() {
-    echo -e "\e[32m     ✅ Successfully installed $1\e[0m";
+    echo -e "\e[32m     🟩 Successfully installed $1\e[0m";
+	echo -e "     🟩 Successfully installed $1" >> $log_path;
 }
 
 logFailInstall() {
-    echo -e "\e[31m     ❎ Failed to install $1\e[0m";
+    echo -e "\e[31m     🟥 Failed to install $1\e[0m";
+	echo -e "     🟥 Failed to install $1" >> $log_path;
 }
 
 logHighlight(){
-    echo -e "\e[43m$1\e[0m";
+    echo -e "\e[43m📢 -> $1\e[0m";
+	echo -e "Important:" >> $log_path;
+	echo -e "📢 -> $1" >> $log_path;
 }
 
 logData(){
     echo -e "\e[0m$1";
+	echo -e "$1" >> $log_path;
 }
 
 logDone(){
     echo -e "\e[32m☑️ Done \e[0m";
+	echo -e "☑️ Done " >> $log_path;
 }
 
 logWarning() {
-    echo -e "";
-    echo -e "\e[31mWarning !!!";
-    echo -e "\e[33m$1 \e[0m";
+    echo -e "\n\e[31mWarning !!!:";
+    echo -e "\e[33m⚠️ -> $1 \e[0m";
+	echo -e "\nWarning !!!:" >> $log_path;
+    echo -e "⚠️ -> $1 " >> $log_path;
 }
 
 logError() {
-    echo -e "";
-    echo -e "\e[41mError:\e[0m";
+    echo -e "\n\e[41mError:\e[0m";
     echo -e "\e[33m☠️ -> $1 \e[0m";
+	echo -e "\nError:" >> $log_path;
+    echo -e "☠️ -> $1 " >> $log_path;
 }
 
 logMessage() {
-    echo -e "";
-    echo -e "Message:";
+    echo -e "\nMessage:";
     echo -e "\e[33m🥸 -> $1\e[0m";
+	echo -e "\nMessage:" >> $log_path;
+    echo -e "🥸 -> $1" >> $log_path;
 }
 
 br() {
     echo -e "";
+	echo -e "" >> $log_path;
 }
 
 br5(){
-    echo -e "";
-    echo -e "";
-    echo -e "";
-    echo -e "";
-    echo -e "";
+    echo -e "\n\n\n\n";
+	echo -e "\n\n\n\n" >> $log_path;
 }
 
 logSummary() {
-    echo -e "";
-    echo -e "\e[36m     === $1 Summary ===\e[0m";
+    echo -e "\n\e[36m🗒️     === $1 Summary ===\e[0m";
+	echo -e "\n🗒️     === $1 Summary ===" >> $log_path;
 }
 
 
@@ -121,6 +136,30 @@ add_configs() {
 
 
 # =======> Installing packages if not installed
+
+# Reusable spinner animation
+spinner() {
+  local pid=$1     # PID of the process to wait for
+  local msg=$2     # Message to show
+  local total=10   # Number of dots
+
+  while kill -0 "$pid" 2>/dev/null; do
+    for ((i=1; i<=total; i++)); do
+      local bar=""
+      for ((j=1; j<=total; j++)); do
+        if (( j <= i )); then
+          bar+="●"
+        else
+          bar+="○"
+        fi
+      done
+      printf "\r     %s \e[0;34m[:%s:]\e[0m" "$msg" "$bar"
+      sleep 0.15
+    done
+  done
+  printf "\r\033[K"  # Clear the line after done
+}
+
 installPackages(){
   if [[ -z "$1" ]]; then
     logInfo "No packages are provided to install"
@@ -129,11 +168,16 @@ installPackages(){
   if rpm -q "$1" &>/dev/null; then
     logAlreadyInstall "$1";
   else
-    if sudo dnf install -y "$1" &>/dev/null; then
+    sudo dnf install -y "$1" &>/dev/null &
+    INSTALL_PID=$!
+	spinner "$INSTALL_PID" "Installing [$1]"
+
+    wait "$INSTALL_PID"
+    if [[ $? -eq 0 ]]; then
       logPassInstall "$1"
     else
       logFailInstall "$1"
-      exit 1;
+      exit 1
     fi
   fi
 }
@@ -157,22 +201,30 @@ installPipPackages() {
     if pip3 show "$1" &> /dev/null; then
       logPass "$1 pip packages is already installed" 
     else
-      pip3 install --upgrade $1
+      pip3 install --upgrade "$1" &>/dev/null &
+      INSTALL_PID=$!
+	  spinner "$INSTALL_PID" "Installing [$1]"
+	  wait "$INSTALL_PID"
       if pip3 show "$1" &> /dev/null; then
-        logPass "$1 pip package installed." 
+        logPassInstall "$1" 
       else
-        logFail "$1 pip package is not installed." 
+        logFailInstall "$1"
+        exit 1 
       fi
     fi
   else
     if pip3 show "$1" &> /dev/null; then
       logPass "$1 pip packages is already installed" 
     else
-      pip3 install --upgrade $1
+      pip3 install --upgrade "$1" &>/dev/null &
+      INSTALL_PID=$!
+	  spinner "$INSTALL_PID" "Installing [$1]"
+	  wait "$INSTALL_PID"
       if pip3 show "$1" &> /dev/null; then
-        logPass "$1 pip package installed." 
+        logPassInstall "$1" 
       else
-        logFail "$1 pip package is not installed." 
+        logFailInstall "$1"
+        exit 1 
       fi
     fi
   fi
@@ -204,12 +256,16 @@ ensureFlatpak(){
 installFlatpakPackage(){
   ensureFlatpak
   if flatpak list --app | grep -q "$1"; then
-    logAlreadyInstall "$1"
+    logAlreadyInstall "$2"
   else
-    if flatpak install -y flathub "$1" &>/dev/null; then
-      logPassInstall "$1"
+    flatpak install -y flathub "$1" &>/dev/null &
+    INSTALL_PID=$!
+    spinner "$INSTALL_PID" "Installing [$2]"
+    wait "$INSTALL_PID"
+    if [[ $? -eq 0 ]]; then
+      logPassInstall "$2"
     else
-      logFailInstall "$1"
+      logFailInstall "$2"
       exit 1
     fi
   fi

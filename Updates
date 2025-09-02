@@ -1,0 +1,3 @@
+Added progress bar for installing applications
+Removed error messages in gnome extensions installation 
+Now, every log details will be saved in a seperate file like "./Logs/log_$Date...."

@@ -9,6 +9,10 @@ find . -name "*.sh" -type f -exec chmod +x {} \; -print
 # Importing SH files
 source ./Scripts/common.sh;
 
+# Create log files
+mkdir -p $log_dir
+touch $log_path
+
 # Clear the screen
 clear
 
@@ -29,23 +33,23 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 clear
 
 # Display the ASCII art
-echo -e "\e[36m _        _______  _       _________ _        ______               ";                  
-echo -e "( (    /|(  ___  )( \      \__   __/( (    /|(  __  \ |\     /|          "; 
-echo -e "|  \  ( || (   ) || (         ) (   |  \  ( || (  \  )| )   ( |          ";
-echo -e "|   \ | || (___) || |         | |   |   \ | || |   ) || |   | |          ";
-echo -e "| (\ \) ||  ___  || |         | |   | (\ \) || |   | || |   | |          ";
-echo -e "| | \   || (   ) || |         | |   | | \   || |   ) || |   | |          ";
-echo -e "| )  \  || )   ( || (____/\___) (___| )  \  || (__/  )| (___) |          ";
-echo -e "|/    )_)|/     \|(_______/\_______/|/    )_)(______/ (_______)          ";
-echo -e "                                                                         ";
-echo -e " ______   _______ _________ _______ _________ _        _______  _______  ";
-echo -e "(  __  \ (  ___  )\__   __/(  ____ \\__   __/( \      (  ____ \(  ____ \ ";
-echo -e "| (  \  )| (   ) |   ) (   | (    \/   ) (   | (      | (    \/| (    \/ ";
-echo -e "| |   ) || |   | |   | |   | (__       | |   | |      | (__    | (_____  ";
-echo -e "| |   | || |   | |   | |   |  __)      | |   | |      |  __)   (_____  ) ";
-echo -e "| |   ) || |   | |   | |   | (         | |   | |      | (            ) | ";
-echo -e "| (__/  )| (___) |   | |   | )      ___) (___| (____/\| (____/\/\____) | ";
-echo -e "(______/ (_______)   )_(   |/       \_______/(_______/(_______/\_______)\e[0m";
+echo -e "\e[36m _        _______  _       _________ _        ______               " | tee -a $log_path;                  
+echo -e "( (    /|(  ___  )( \      \__   __/( (    /|(  __  \ |\     /|          " | tee -a $log_path; 
+echo -e "|  \  ( || (   ) || (         ) (   |  \  ( || (  \  )| )   ( |          " | tee -a $log_path;
+echo -e "|   \ | || (___) || |         | |   |   \ | || |   ) || |   | |          " | tee -a $log_path;
+echo -e "| (\ \) ||  ___  || |         | |   | (\ \) || |   | || |   | |          " | tee -a $log_path;
+echo -e "| | \   || (   ) || |         | |   | | \   || |   ) || |   | |          " | tee -a $log_path;
+echo -e "| )  \  || )   ( || (____/\___) (___| )  \  || (__/  )| (___) |          " | tee -a $log_path;
+echo -e "|/    )_)|/     \|(_______/\_______/|/    )_)(______/ (_______)          " | tee -a $log_path;
+echo -e "                                                                         " | tee -a $log_path;
+echo -e " ______   _______ _________ _______ _________ _        _______  _______  " | tee -a $log_path;
+echo -e "(  __  \ (  ___  )\__   __/(  ____ \\__   __/( \      (  ____ \(  ____ \ " | tee -a $log_path;
+echo -e "| (  \  )| (   ) |   ) (   | (    \/   ) (   | (      | (    \/| (    \/ " | tee -a $log_path;
+echo -e "| |   ) || |   | |   | |   | (__       | |   | |      | (__    | (_____  " | tee -a $log_path;
+echo -e "| |   | || |   | |   | |   |  __)      | |   | |      |  __)   (_____  ) " | tee -a $log_path;
+echo -e "| |   ) || |   | |   | |   | (         | |   | |      | (            ) | " | tee -a $log_path;
+echo -e "| (__/  )| (___) |   | |   | )      ___) (___| (____/\| (____/\/\____) | " | tee -a $log_path;
+echo -e "(______/ (_______)   )_(   |/       \_______/(_______/(_______/\_______)\e[0m" | tee -a $log_path;
 
 # Warning
 logWarning "This script will overwrite your existing configuration files. 🫤\nI will backup your existing configuration files to '$backup_dir' folder in the home directory. 😇";
