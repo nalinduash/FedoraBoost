@@ -52,6 +52,25 @@ if [[ -f "$AKMODS_CERT" ]]; then
   if echo "$test_output" | grep -q "is already enrolled"; then
     logInfo "akmods MOK is already enrolled in firmware."
     needs_enroll=false
+  else
+	logInfo "Key exists but is not enrolled. We can generate a new key for you."
+	logHighlight "Enter Y only if you don't remember the previous password and stuck
+	with a blue screen at booting the machine up"
+	logHighlight "If you remember the password, enter N" 
+	read -p "Do you want to forcefully enroll a new key? (y/n): " confirm
+    if [[ $confirm =~ ^[Yy]$ ]]; then
+      logInfo "Generating new akmods signing key with 'kmodgenca -a'..."
+      if sudo kmodgenca -a --force; then
+        logInfo "New akmods keypair generated."
+        needs_enroll=true
+      else
+        logFail "Failed to generate new akmods keypair."
+        exit 1
+      fi
+    else
+      logInfo "Using existing key for enrollment."
+      needs_enroll=true
+    fi
   fi
 else
   logInfo "No akmods key found. Will generate one."
@@ -79,6 +98,8 @@ fi
 # Enroll the key via MOK if not already enrolled/pending
 logScriptSubHead "Enrolling the key via MOK if not already enrolled/pending"
 if [[ "$needs_enroll" == true ]]; then
+  clear
+  br5
   logHighlight "Enrolling akmods key into MOK. You will be prompted to set a one-time password."
   logHighlight "On next boot, select 'Enroll MOK' > 'Continue' > 'Yes' and enter that password."
   br
