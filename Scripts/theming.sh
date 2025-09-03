@@ -39,7 +39,7 @@ source ./Scripts/Theming/theme.sh;
 
 # GRUB
 logScriptSubHead "Adding GRUB theme";
-sudo ./Scripts/Theming/grub.sh; 
+sudo ./Scripts/Theming/grub.sh;
 
 logDone
 br5

@@ -6,9 +6,13 @@
 #                       |
 #                       V
 script_path="$(pwd)"
-backup_dir="$HOME/old_dotfiles_$(date +"%Y-%m-%d")"
+if [ -z "$backup_dir" ]; then
+  export backup_dir="$HOME/old_dotfiles$(date +"%Y-%m-%d_%H-%M-%S")"
+fi
 log_dir="./Logs"
-log_path="$log_dir/log_$(date +"%Y-%m-%d_%H-%M-%S").txt"
+if [ -z "$log_path" ]; then
+  export log_path="$log_dir/log_$(date +"%Y-%m-%d_%H-%M-%S").txt"  
+fi
 
 
 # Show Messages ---------
@@ -68,7 +72,7 @@ logFailInstall() {
 }
 
 logHighlight(){
-    echo -e "\e[43m📢 -> $1\e[0m";
+    echo -e "\e[0m📢 -> \e[43m$1\e[0m";
 	echo -e "Important:" >> $log_path;
 	echo -e "📢 -> $1" >> $log_path;
 }
@@ -93,7 +97,7 @@ logWarning() {
 logError() {
     echo -e "\n\e[41mError:\e[0m";
     echo -e "\e[33m☠️ -> $1 \e[0m";
-	echo -e "\nError:" >> $log_path;
+	  echo -e "\nError:" >> $log_path;
     echo -e "☠️ -> $1 " >> $log_path;
 }
 

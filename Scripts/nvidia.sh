@@ -102,7 +102,16 @@ installPackages "vulkan"
 logScriptSubHead "Blacklisting nouveau to avoid conflicts"
 sudo touch "/etc/modprobe.d/blacklist-nouveau.conf"
 add_configs "/etc/modprobe.d/blacklist-nouveau.conf" "blacklist nouveau" 
-sudo dracut --force
+sudo dracut --force &>/dev/null &
+INSTALL_PID=$!
+spinner "$INSTALL_PID" "Building initramfs"
+wait "$INSTALL_PID"
+if [[ $? -eq 0 ]]; then
+  logPass "Build successfull"
+else
+  logFail "Build Fail"
+  exit 1
+fi
 
 logDone
 br5

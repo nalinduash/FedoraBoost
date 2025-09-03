@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Exit immediately if a command exits with a non-zero value
-set -euo
-
 # Make every .sh file executable
 find . -name "*.sh" -type f -exec chmod +x {} \; -print
 
@@ -72,7 +69,7 @@ clear;
 source ./Scripts/prepare.sh; 
 
 # Secure boot
-sudo ./Scripts/secureboot.sh;                       # Need sudo privilages here
+sudo ./Scripts/secureboot.sh               # Need sudo privilages here
 
 # Installing Nvidia drivers
 source ./Scripts/nvidia.sh;

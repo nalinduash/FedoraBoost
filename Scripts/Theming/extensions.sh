@@ -9,15 +9,25 @@ installPackages "gnome-extensions-app"          # Manage Gnome extensions
 installPackages "gnome-tweaks"                  # Change Gnome appearance
 installPipPackages "gnome-extensions-cli"       # To install Gnome extensions
 
-# Backing up extension names
+# Back up extension names
 logScriptMiniSubHead "Backing up extension names"
-uuids=$(gext list 2>/dev/null | grep -v "/system" | grep -Eo '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
+uuids=$(gext list 2>/dev/null | grep -v "/system" | grep -Eo '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}' || true)
 mkdir -p $backup_dir
-echo "$uuids" > "$backup_dir/gnome-extensions-list.txt"
+if [ -z "$uuids" ]; then
+  logPass "No user extensions found."
+else
+  echo "$uuids" > "$backup_dir/gnome-extensions-list.txt"
+  logPass "Extension list saved to $backup_dir/gnome-extensions-list.txt"
+fi
 
-# Backing up extension configs
+# Back up extension configs
 logScriptMiniSubHead "Backing up extension configs"
 dconf dump /org/gnome/shell/extensions/ > "$backup_dir/gnome-extensions-settings.dconf"
+
+# Delete existing extensions
+logScriptMiniSubHead "Deleting existing extensions"
+delete_folder_if_exists "$HOME/.local/share/gnome-shell/extensions/"
+runCmd "dconf reset -f /org/gnome/shell/extensions/" "Resetting configurations of Gnome extensions"
 
 # Install Gnome extensions if they are not installed
 installed=$(gext list)
