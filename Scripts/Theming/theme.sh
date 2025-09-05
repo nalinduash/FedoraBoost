@@ -23,10 +23,8 @@ installPackages gtk2-engines
 # Step 2: Clone repo 
 logScriptMiniSubHead "Cloning the repo"
 br
-mkdir -p "$TEMP_DIR"
 mkdir -p "$INSTALL_DIR"
-delete_folder_if_exists "$TEMP_DIR"
-git clone --depth=1 "$REPO_URL" "$TEMP_DIR"
+clone_repo "$REPO_URL" "$TEMP_DIR"
 br
 
 # Step 3: Install 

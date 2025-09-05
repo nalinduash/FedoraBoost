@@ -12,8 +12,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys www "['<Super>b']"
 
 # Custom Shortcuts
 logScriptSubHead "Adding Custom Shortcuts"
-logScriptMiniSubHead "Adding ulauncher shortcut"
-add_shortcut_if_missing "Ulauncher" "ulauncher-toggle" "<Control>space"
+
 
 logDone
 br5

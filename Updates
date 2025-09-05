@@ -4,3 +4,9 @@ Now, every log details will be saved in a seperate file like "./Logs/log_$Date..
 Backup Gnome Extensions and their configurations
 Let user forcefully generate a new key if they don't remember the previous one and stuck with a blue screen(Enrolling MOK)
     at booting.
+Replaced Dash-to-Dock with Dash-to-Panel for stability
+Added Ulauncher
+
+
+
+Bug Fixes: Sudden logout fixed.

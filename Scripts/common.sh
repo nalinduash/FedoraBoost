@@ -394,3 +394,50 @@ delete_folder_if_exists() {
         rm -rf "$folder" && logPass "Deleted: $folder" || logFail "Failed to delete: $folder"
     fi
 }
+
+
+# =======> Github related
+
+clone_repo() {
+    # Check if required arguments are provided
+    if [ $# -ne 2 ]; then
+        logError "Missing arguments for cloning repo"
+        return 1
+    fi
+
+    local repo_url="$1"
+    local dest_path="$2"
+
+    # Validate repository URL
+    if [[ ! "$repo_url" =~ ^https://github.com/.*\.git$ ]]; then
+        logError "Invalid GitHub repository URL"
+        return 1
+    fi
+
+    # Check if destination directory already exists
+    if [ -d "$dest_path" ]; then
+        logWarning "Destination path '$dest_path' already exists"
+        logInfo "Deleting it"
+		rm -rf $dest_path
+    fi
+
+    # Create parent directory if it doesn't exist
+    mkdir -p "$(dirname "$dest_path")" || {
+        logError "Failed to create parent directory for '$dest_path'"
+        return 1
+    }
+
+    # Clone the repository
+    logMiniInfo "Cloning repository from $repo_url to $dest_path..."
+    git clone --depth=1 "$repo_url" "$dest_path" &>/dev/null &
+    INSTALL_PID=$!
+	spinner "$INSTALL_PID" "Clonning repo: [$repo_url]"
+
+    wait "$INSTALL_PID"
+    if [[ $? -eq 0 ]]; then
+      logPass "Repo is successfully cloned"
+    else
+      logFail "Repo is failed to clone"
+      return 1
+    fi
+}
