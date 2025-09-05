@@ -69,7 +69,7 @@ install_extension "blur-my-shell@aunetx"
 install_extension "clipboard-indicator@tudmotu.com"
 install_extension "compiz-alike-magic-lamp-effect@hermes83.github.com"
 install_extension "compiz-windows-effect@hermes83.github.com"
-install_extension "dash2dock-lite@icedman.github.com"
+install_extension "dash-to-panel@jderose9.github.com"
 install_extension "desktop-cube@schneegans.github.com"
 install_extension "mediacontrols@cliffniff.github.com"
 install_extension "tiling-assistant@leleat-on-github"
@@ -85,7 +85,7 @@ sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell@aunetx/schemas/org.g
 sudo cp ~/.local/share/gnome-shell/extensions/clipboard-indicator@tudmotu.com/schemas/org.gnome.shell.extensions.clipboard-indicator.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/compiz-alike-magic-lamp-effect@hermes83.github.com/schemas/org.gnome.shell.extensions.com.github.hermes83.compiz-alike-magic-lamp-effect.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/compiz-windows-effect@hermes83.github.com/schemas/org.gnome.shell.extensions.com.github.hermes83.compiz-windows-effect.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/schemas/org.gnome.shell.extensions.dash2dock-lite.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas/org.gnome.shell.extensions.dash-to-panel.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/desktop-cube@schneegans.github.com/schemas/org.gnome.shell.extensions.desktop-cube.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/mediacontrols@cliffniff.github.com/schemas/org.gnome.shell.extensions.mediacontrols.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/tiling-assistant@leleat-on-github/schemas/org.gnome.shell.extensions.tiling-assistant.gschema.xml /usr/share/glib-2.0/schemas/
@@ -100,15 +100,52 @@ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/ 2>/dev/null
 logMiniInfo "Customizing AppIndicator and KStatusNotifierItem Support"
 gsettings set org.gnome.shell.extensions.appindicator tray-pos "center"
 
-# Changing settings of Dash2Dock Animated
-logMiniInfo "Customizing Dash2Dock Animated"
-gsettings set org.gnome.shell.extensions.dash2dock-lite open-app-animation true
-gsettings set org.gnome.shell.extensions.dash2dock-lite autohide-dash true
-gsettings set org.gnome.shell.extensions.dash2dock-lite shrink-icons true
-gsettings set org.gnome.shell.extensions.dash2dock-lite edge-distance 0.6
-gsettings set org.gnome.shell.extensions.dash2dock-lite border-radius 2
-gsettings set org.gnome.shell.extensions.dash2dock-lite running-indicator-style 1  
-gsettings set org.gnome.shell.extensions.dash2dock-lite trash-icon true
+# Changing settings of Dash-to-Panel
+logMiniInfo "Customizing Dash-to-Panel"
+gsettings set org.gnome.shell.extensions.dash-to-panel animate-appicon-hover true
+gsettings set org.gnome.shell.extensions.dash-to-panel animate-appicon-hover-animation-zoom "{'SIMPLE': 1.5, 'RIPPLE': 1.25, 'PLANK': 2.0}"
+gsettings set org.gnome.shell.extensions.dash-to-panel appicon-margin 4
+gsettings set org.gnome.shell.extensions.dash-to-panel dot-position 'BOTTOM'
+gsettings set org.gnome.shell.extensions.dash-to-panel click-action 'TOGGLE-SPREAD'
+gsettings set org.gnome.shell.extensions.dash-to-panel dot-style-unfocused 'DOTS'
+gsettings set org.gnome.shell.extensions.dash-to-panel global-border-radius 5
+gsettings set org.gnome.shell.extensions.dash-to-panel hide-overview-on-startup true
+gsettings set org.gnome.shell.extensions.dash-to-panel intellihide true
+gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-animation-time 100
+gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-close-delay 100
+gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-enable-start-delay 500
+gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-hide-from-windows true
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-anchors '{"CMN-0x00000000":"MIDDLE"}'
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-element-positions '{"CMN-0x00000000":[
+                                                                                                  {"element":"taskbar","visible":true,"position":"stackedTL"},
+                                                                                                  {"element":"dateMenu","visible":true,"position":"stackedBR"},
+                                                                                                  {"element":"showAppsButton","visible":true,"position":"stackedBR"},
+                                                                                                  {"element":"activitiesButton","visible":false,"position":"stackedTL"},
+                                                                                                  {"element":"leftBox","visible":false,"position":"stackedTL"},
+                                                                                                  {"element":"centerBox","visible":false,"position":"stackedBR"},
+                                                                                                  {"element":"rightBox","visible":false,"position":"stackedBR"},
+                                                                                                  {"element":"systemMenu","visible":false,"position":"stackedBR"},
+                                                                                                  {"element":"desktopButton","visible":false,"position":"stackedBR"}
+                                                                                                ]
+                                                                                }'
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-lengths '{"CMN-0x00000000":70}'
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-positions '{}'
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-sizes '{"CMN-0x00000000":60}'
+gsettings set org.gnome.shell.extensions.dash-to-panel prefs-opened false
+gsettings set org.gnome.shell.extensions.dash-to-panel preview-use-custom-opacity true
+gsettings set org.gnome.shell.extensions.dash-to-panel stockgs-keep-top-panel true
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-gradient-top-color '#000000'
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-gradient-top-opacity 0.0
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-panel-opacity 0.5
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-opacity true
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-dynamic-opacity true
+gsettings set org.gnome.shell.extensions.dash-to-panel window-preview-padding 15
+gsettings set org.gnome.shell.extensions.dash-to-panel window-preview-size 180
+
+
+# Changing settings of Blur-my-shell
+logMiniInfo "Customizing Blur-my-shell"
+gsettings set org.gnome.shell.extensions.blur-my-shell.panel pipeline 'pipeline_default_rounded'
 
 # Changing settings of TopHat
 logMiniInfo "Customizing TopHat"
