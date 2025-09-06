@@ -8,6 +8,7 @@ logScriptHead "Starting customization...";
 # Adding some needed packages for the installation
 logScriptSubHead "Adding some needed packages for the installation"
 installPackages "curl"
+installPackages "gum"
 
 # Stop sleeping and locking during the installation
 logScriptSubHead "Stopping auto-sleeping"
