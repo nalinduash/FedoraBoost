@@ -10,6 +10,7 @@ source "./Scripts/Apps/commonApps.sh"
 
 logScriptSubHead "Installing apps with customizations"
 source "./Scripts/Apps/vlc.sh"
+source "./Scripts/Apps/ulauncher.sh"
 
 logDone
 br5

@@ -13,6 +13,11 @@ logMiniInfo "Adding ulauncher to Startup Applications"
 mkdir -p ~/.config/autostart/
 cp "./Assets/Configs/ulauncher/ulauncher.desktop" "$HOME/.config/autostart/ulauncher.desktop"
 
+logMiniInfo "Backing up settings and extensions of Ulauncher"
+mkdir -p "$backup_dir/ulauncher/"
+mv "$HOME/.config/ulauncher/settings.json" "$backup_dir/ulauncher/"
+mv "$HOME/.local/share/ulauncher/extensions/" "$backup_dir/ulauncher/extensions"
+
 logMiniInfo "Customizing Ulauncher"
 gtk-launch ulauncher.desktop >/dev/null 2>&1
 sleep 2                                         # Wait till ulauncher setup it's defaults
