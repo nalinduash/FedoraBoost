@@ -24,8 +24,8 @@ sleep 2                                         # Wait till ulauncher setup it's
 cp "./Assets/Configs/ulauncher/ulauncher.json" "$HOME/.config/ulauncher/settings.json"
 
 logMiniInfo "Adding extensions"
-clone_repo "https://github.com/Ulauncher/ulauncher-emoji.git" "$HOME/.local/share/ulauncher/extensions/com.github.ulauncher.ulauncher-emoji/"
-clone_repo "https://github.com/manahter/ulauncher-translate.git" "$HOME/.local/share/ulauncher/extensions/com.github.manahter.ulauncher-translate/"
-clone_repo "https://github.com/iboyperson/ulauncher-system.git" "$HOME/.local/share/ulauncher/extensions/com.github.iboyperson.ulauncher-system/"
-clone_repo "https://github.com/DevKleber/ulauncher-open-link.git" "$HOME/.local/share/ulauncher/extensions/com.github.devkleber.ulauncher-open-link/"
-clone_repo "https://github.com/NastuzziSamy/ulauncher-google-search.git" "$HOME/.local/share/ulauncher/extensions/com.github.nastuzzisamy.ulauncher-google-search/"
+clone_repo "https://github.com/Ulauncher/ulauncher-emoji.git" "$HOME/.local/share/ulauncher/extensions/com.github.ulauncher.ulauncher-emoji/" "Ulauncher-emoji"
+clone_repo "https://github.com/manahter/ulauncher-translate.git" "$HOME/.local/share/ulauncher/extensions/com.github.manahter.ulauncher-translate/" "Ulauncher-translate"
+clone_repo "https://github.com/iboyperson/ulauncher-system.git" "$HOME/.local/share/ulauncher/extensions/com.github.iboyperson.ulauncher-system/" "Ulauncher-system"
+clone_repo "https://github.com/DevKleber/ulauncher-open-link.git" "$HOME/.local/share/ulauncher/extensions/com.github.devkleber.ulauncher-open-link/" "Ulauncher-open-link"
+clone_repo "https://github.com/NastuzziSamy/ulauncher-google-search.git" "$HOME/.local/share/ulauncher/extensions/com.github.nastuzzisamy.ulauncher-google-search/" "Ulauncher-google-search"

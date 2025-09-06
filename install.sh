@@ -66,25 +66,25 @@ fi
 # ====================Start======================
 clear;
 # Prepare system to run this script
-source ./Scripts/prepare.sh; 
+#source ./Scripts/prepare.sh; 
 
 # Secure boot
-sudo ./Scripts/secureboot.sh               # Need sudo privilages here
+#sudo ./Scripts/secureboot.sh               # Need sudo privilages here
 
 # Select Apps
 source ./Scripts/selectApps.sh;
 
 # Installing Nvidia drivers
-source ./Scripts/nvidia.sh;
+#source ./Scripts/nvidia.sh;
 
 # Adding Shortcut key combinations
-source ./Scripts/shortcuts.sh; 
+#source ./Scripts/shortcuts.sh; 
 
 # Some system tweaks
-source ./Scripts/systemTweaks.sh; 
+#source ./Scripts/systemTweaks.sh; 
 
 # Theming Desktop
-source ./Scripts/theming.sh; 
+#source ./Scripts/theming.sh; 
 
 # Install Apps
 source ./Scripts/apps.sh "$appfile";

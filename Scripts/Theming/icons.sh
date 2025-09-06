@@ -23,7 +23,7 @@ installPackages wget
 logScriptMiniSubHead "Cloning the repo"
 br
 delete_folder_if_exists "$TEMP_DIR"
-clone_repo "$REPO_URL" "$TEMP_DIR"
+clone_repo "$REPO_URL" "$TEMP_DIR" "Tela Icon Theme"
 br
 
 # Step 3: Install 

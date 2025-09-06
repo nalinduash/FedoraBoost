@@ -401,13 +401,14 @@ delete_folder_if_exists() {
 
 clone_repo() {
     # Check if required arguments are provided
-    if [ $# -ne 2 ]; then
+    if [ $# -ne 3 ]; then
         logError "Missing arguments for cloning repo"
         return 1
     fi
 
     local repo_url="$1"
     local dest_path="$2"
+	local name="$3"
 
     # Validate repository URL
     if [[ ! "$repo_url" =~ ^https://github.com/.*\.git$ ]]; then
@@ -429,16 +430,16 @@ clone_repo() {
     }
 
     # Clone the repository
-    logMiniInfo "Cloning repository from $repo_url to $dest_path..."
+    logMiniInfo "Cloning repository $name"
     git clone --depth=1 "$repo_url" "$dest_path" &>/dev/null &
     INSTALL_PID=$!
-	spinner "$INSTALL_PID" "Clonning repo: [$repo_url]"
+	spinner "$INSTALL_PID" "Clonning repo: [$name]"
 
     wait "$INSTALL_PID"
     if [[ $? -eq 0 ]]; then
-      logPass "Repo is successfully cloned"
+      logPass "$name repo is successfully cloned"
     else
-      logFail "Repo is failed to clone"
+      logFail "$name repo is failed to clone"
       return 1
     fi
 }

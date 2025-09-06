@@ -24,7 +24,7 @@ installPackages gtk2-engines
 logScriptMiniSubHead "Cloning the repo"
 br
 mkdir -p "$INSTALL_DIR"
-clone_repo "$REPO_URL" "$TEMP_DIR"
+clone_repo "$REPO_URL" "$TEMP_DIR" "Nordic GTK theme"
 br
 
 # Step 3: Install 

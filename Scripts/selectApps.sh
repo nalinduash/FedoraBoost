@@ -32,8 +32,23 @@ while true; do
     unique_apps=($(printf "%s\n" "${app_list[@]}" | sort -u))
 
     # Let user prune apps
-    logScriptSubHead "You selected apps. Remove any apps you don't want (use ↑/↓ and Ctrl+K to remove lines, Enter to confirm):"
-    mapfile -t final_apps < <(printf "%s\n" "${unique_apps[@]}" | gum choose --no-limit)
+    logScriptSubHead "You selected categories. Now choose apps you want to REMOVE (press Space to select, Enter to confirm):"
+    mapfile -t remove_apps < <(printf "%s\n" "${unique_apps[@]}" | gum choose --no-limit)
+
+    # Build final_apps = unique_apps - remove_apps
+    final_apps=()
+    for app in "${unique_apps[@]}"; do
+        skip=false
+        for rem in "${remove_apps[@]}"; do
+            if [[ "$app" == "$rem" ]]; then
+                skip=true
+                break
+            fi
+        done
+        if ! $skip; then
+            final_apps+=("$app")
+        fi
+    done
 
     br
     logInfo "Final app list:"

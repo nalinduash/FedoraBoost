@@ -22,7 +22,7 @@ fi
 appfile="$1"
 
 if [ ! -s "$appfile" ]; then
-  logWarning "No apps to install!"
+  logError "Could not find the app-selection.txt"
   exit 1
 fi
 
@@ -31,5 +31,6 @@ for pkg in $(cat "$appfile"); do
   installPackages "$pkg"
 done
 
+br
 logDone
 br5
