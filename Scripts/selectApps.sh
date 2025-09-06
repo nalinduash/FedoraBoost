@@ -16,8 +16,6 @@ categories=(
   ["Gamer"]="lutris"
 )
 
-appfile="./app-selection.txt"
-
 while true; do
     logScriptSubHead "Select one or more categories (press Space to select, Enter to confirm):"
     mapfile -t selected_categories < <(printf "%s\n" "${!categories[@]}" | gum choose --no-limit)
@@ -34,7 +32,7 @@ while true; do
     unique_apps=($(printf "%s\n" "${app_list[@]}" | sort -u))
 
     # Let user prune apps
-    logScriptSubHead "👉 You selected apps. Remove any you don't want (press Space to unselect, Enter to confirm):"
+    logScriptSubHead "You selected apps. Remove any apps you don't want (use ↑/↓ and Ctrl+K to remove lines, Enter to confirm):"
     mapfile -t final_apps < <(printf "%s\n" "${unique_apps[@]}" | gum choose --no-limit)
 
     br

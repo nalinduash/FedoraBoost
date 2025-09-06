@@ -13,6 +13,7 @@ log_dir="./Logs"
 if [ -z "$log_path" ]; then
   export log_path="$log_dir/log_$(date +"%Y-%m-%d_%H-%M-%S").txt"  
 fi
+appfile="./app-selection.txt"
 
 
 # Show Messages ---------

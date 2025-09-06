@@ -71,11 +71,11 @@ source ./Scripts/prepare.sh;
 # Secure boot
 sudo ./Scripts/secureboot.sh               # Need sudo privilages here
 
-# Installing Nvidia drivers
-source ./Scripts/nvidia.sh;
-
 # Select Apps
 source ./Scripts/selectApps.sh;
+
+# Installing Nvidia drivers
+source ./Scripts/nvidia.sh;
 
 # Adding Shortcut key combinations
 source ./Scripts/shortcuts.sh; 
@@ -87,7 +87,7 @@ source ./Scripts/systemTweaks.sh;
 source ./Scripts/theming.sh; 
 
 # Install Apps
-source ./Scripts/apps.sh;
+source ./Scripts/apps.sh "$appfile";
 
 
 # ===================END=======================
