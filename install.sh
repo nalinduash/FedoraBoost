@@ -74,8 +74,8 @@ sudo ./Scripts/secureboot.sh               # Need sudo privilages here
 # Installing Nvidia drivers
 source ./Scripts/nvidia.sh;
 
-# Install Apps
-source ./Scripts/apps.sh;
+# Select Apps
+source ./Scripts/selectApps.sh;
 
 # Adding Shortcut key combinations
 source ./Scripts/shortcuts.sh; 
@@ -85,6 +85,9 @@ source ./Scripts/systemTweaks.sh;
 
 # Theming Desktop
 source ./Scripts/theming.sh; 
+
+# Install Apps
+source ./Scripts/apps.sh;
 
 
 # ===================END=======================

@@ -53,5 +53,5 @@ done
 # Save to file
 printf "%s\n" "${final_apps[@]}" > "$appfile"
 
-# Call installer
-./install-apps.sh "$appfile"
+logDone
+br5
