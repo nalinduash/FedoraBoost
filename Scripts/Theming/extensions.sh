@@ -131,16 +131,16 @@ gsettings set org.gnome.shell.extensions.dash-to-panel panel-element-positions '
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-lengths '{"CMN-0x00000000":70}'
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-positions '{}'
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-sizes '{"CMN-0x00000000":60}'
-gsettings set org.gnome.shell.extensions.dash-to-panel prefs-opened false
+gsettings set org.gnome.shell.extensions.dash-to-panel prefs-opened true
 gsettings set org.gnome.shell.extensions.dash-to-panel preview-use-custom-opacity true
 gsettings set org.gnome.shell.extensions.dash-to-panel stockgs-keep-top-panel true
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-gradient-top-color '#000000'
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-gradient-top-opacity 0.0
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-panel-opacity 0.0
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-panel-opacity 1.0
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-bg false
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-gradient false
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-opacity true
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-dynamic-opacity true
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-opacity false
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-dynamic-opacity false
 gsettings set org.gnome.shell.extensions.dash-to-panel window-preview-padding 15
 gsettings set org.gnome.shell.extensions.dash-to-panel window-preview-size 180
 
