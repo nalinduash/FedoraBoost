@@ -5,7 +5,7 @@ source ./Scripts/common.sh
 
 # Hardcoded paths
 SRC="./Assets/Wallpapers"
-DEST="$HOME/.local/share/backgrounds/nalindu-dotfiles"
+DEST="$HOME/.local/share/backgrounds/FedoraBoost"
 
 # Create destination folder if not exists
 logScriptMiniSubHead "Creating destination folder if not exists"

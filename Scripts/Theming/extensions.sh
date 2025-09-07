@@ -165,7 +165,7 @@ gsettings set org.fedorahosted.background-logo-extension logo-always-visible tru
 
 # Changing settings of Wallpaper Slideshow
 logMiniInfo "Customizing Wallpaper Slideshow"
-WALL_LOCATION="$HOME/.local/share/backgrounds/nalindu-dotfiles"
+WALL_LOCATION="$HOME/.local/share/backgrounds/FedoraBoost"
 mkdir -p "$WALL_LOCATION"
 gsettings set org.gnome.shell.extensions.azwallpaper slideshow-directory "$WALL_LOCATION"
 gsettings set org.gnome.shell.extensions.azwallpaper slideshow-slide-duration "(24, 0, 0)"
