@@ -290,6 +290,28 @@ installDnfGroup(){
   fi
 }
 
+# Swap packages
+swapPackages(){
+  if [ $# -ne 2 ]; then
+    logError "Missing argumnets for swapPackages"
+    exit 0
+  fi
+  if rpm -q "$2" &>/dev/null; then
+    logAlreadyInstall "$1";
+  else
+    sudo dnf swap -y "$1" "$2" --allowerasing &>/dev/null &
+    INSTALL_PID=$!
+	spinner "$INSTALL_PID" "Swapping [$1] with [$2]"
+
+    wait "$INSTALL_PID"
+    if [[ $? -eq 0 ]]; then
+      logPassInstall "$1"
+    else
+      logFailInstall "$1"
+      exit 1
+    fi
+  fi
+}
 
 # =======> Run Commands and log 
 runCmd() { #Cmd, description
