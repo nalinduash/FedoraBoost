@@ -108,7 +108,7 @@ gsettings set org.gnome.shell.extensions.dash-to-panel appicon-margin 4
 gsettings set org.gnome.shell.extensions.dash-to-panel dot-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-panel click-action 'TOGGLE-SPREAD'
 gsettings set org.gnome.shell.extensions.dash-to-panel dot-style-unfocused 'DOTS'
-gsettings set org.gnome.shell.extensions.dash-to-panel global-border-radius 5
+gsettings set org.gnome.shell.extensions.dash-to-panel global-border-radius 3
 gsettings set org.gnome.shell.extensions.dash-to-panel hide-overview-on-startup true
 gsettings set org.gnome.shell.extensions.dash-to-panel intellihide true
 gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-animation-time 100
@@ -131,22 +131,23 @@ gsettings set org.gnome.shell.extensions.dash-to-panel panel-element-positions '
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-lengths '{"CMN-0x00000000":70}'
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-positions '{}'
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-sizes '{"CMN-0x00000000":60}'
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-top-bottom-margins 8
 gsettings set org.gnome.shell.extensions.dash-to-panel prefs-opened true
 gsettings set org.gnome.shell.extensions.dash-to-panel preview-use-custom-opacity true
 gsettings set org.gnome.shell.extensions.dash-to-panel stockgs-keep-top-panel true
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-gradient-top-color '#000000'
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-gradient-top-opacity 0.0
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-panel-opacity 1.0
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-panel-opacity 0.5
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-bg false
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-gradient false
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-opacity false
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-dynamic-opacity false
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-opacity true
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-dynamic-opacity true
 gsettings set org.gnome.shell.extensions.dash-to-panel window-preview-padding 15
 gsettings set org.gnome.shell.extensions.dash-to-panel window-preview-size 180
 
 # Changing settings of Blur-my-shell
 logMiniInfo "Customizing Blur-my-shell"
-gsettings set org.gnome.shell.extensions.blur-my-shell.panel pipeline 'pipeline_default_rounded'
+gsettings set org.gnome.shell.extensions.blur-my-shell.panel blur false
 
 # Changing settings of TopHat
 logMiniInfo "Customizing TopHat"

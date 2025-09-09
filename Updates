@@ -6,6 +6,8 @@ Let user forcefully generate a new key if they don't remember the previous one a
 Replaced Dash-to-Dock with Dash-to-Panel for stability
 Added Ulauncher
 Added app selection
+Script speed improved
 
 
-Bug Fixes: Sudden logout fixed.
+Bug Fixed: Sudden logout fixed.
+Bug Fixed: Blur inconsistancy fixed. 

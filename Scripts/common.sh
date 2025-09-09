@@ -278,13 +278,19 @@ installFlatpakPackage(){
 
 # DNF Group Install
 installDnfGroup(){
-  if dnf group info "$1" 2>/dev/null | grep -q "Installed"; then
-    logAlreadyInstall "group: $1"
+  local group="$1"
+
+  if dnf group list --installed -v | grep -q "^   $group$"; then
+    logAlreadyInstall "Group: $group"
   else
-    if sudo dnf group install -y "$1" &>/dev/null; then
-      logPassInstall "group: $1"
+    sudo dnf group install -y "$group" &>/dev/null &
+    INSTALL_PID=$!
+    spinner "$INSTALL_PID" "Installing Group [$group]"
+    wait "$INSTALL_PID"
+    if [[ $? -eq 0 ]]; then
+      logPassInstall "Group: $group"
     else
-      logFailInstall "group: $1"
+      logFailInstall "Group: $group"
       exit 1
     fi
   fi
@@ -296,8 +302,8 @@ swapPackages(){
     logError "Missing argumnets for swapPackages"
     exit 0
   fi
-  if rpm -q "$2" &>/dev/null; then
-    logAlreadyInstall "$1";
+  if dnf list --installed "$2" &>/dev/null; then
+    logAlreadyInstall "$2";
   else
     sudo dnf swap -y "$1" "$2" --allowerasing &>/dev/null &
     INSTALL_PID=$!
