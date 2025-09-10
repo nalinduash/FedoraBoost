@@ -137,7 +137,7 @@ gsettings set org.gnome.shell.extensions.dash-to-panel preview-use-custom-opacit
 gsettings set org.gnome.shell.extensions.dash-to-panel stockgs-keep-top-panel true
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-gradient-top-color '#000000'
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-gradient-top-opacity 0.0
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-panel-opacity 0.5
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-panel-opacity 0.4
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-bg false
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-gradient false
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-opacity true

@@ -26,6 +26,17 @@ if [ ! -s "$appfile" ]; then
   exit 1
 fi
 
+logScriptSubHead "Installing Flatpak applications from user's choice..."
+for pkg in $(cat "$appfile"); do
+  if [[ pkg == "Zoom"]]; then
+	installFlatpakPackage "us.zoom.Zoom" "Zoom"									# Online meeting app
+  else if [[ pkg == "Mission-Center"]]; then
+	installFlatpakPackage "io.missioncenter.MissionCenter" "Mission Center"  	# System monitor
+  else if [[ pkg == "Gear-Lever"]]; then
+	installFlatpakPackage "it.mijorus.gearlever" "Gear Lever"           	 	# Manage AppImages
+  fi
+done
+
 logScriptSubHead "Installing applications from user's choice..."
 for pkg in $(cat "$appfile"); do
   installPackages "$pkg"

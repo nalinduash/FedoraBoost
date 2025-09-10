@@ -7,6 +7,7 @@ Replaced Dash-to-Dock with Dash-to-Panel for stability
 Added Ulauncher
 Added app selection
 Script speed improved
+Added flatpak app selection
 
 
 Bug Fixed: Sudden logout fixed.

@@ -280,7 +280,7 @@ installFlatpakPackage(){
 installDnfGroup(){
   local group="$1"
 
-  if dnf group list --installed -v | grep -q "^   $group$"; then
+  if dnf group list --installed | grep -q "^   $group$"; then
     logAlreadyInstall "Group: $group"
   else
     sudo dnf group install -y "$group" &>/dev/null &
