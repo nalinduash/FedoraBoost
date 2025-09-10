@@ -28,12 +28,12 @@ fi
 
 logScriptSubHead "Installing Flatpak applications from user's choice..."
 for pkg in $(cat "$appfile"); do
-  if [[ pkg == "Zoom"]]; then
-	installFlatpakPackage "us.zoom.Zoom" "Zoom"									# Online meeting app
-  else if [[ pkg == "Mission-Center"]]; then
+  if [[ $pkg == "Zoom" ]]; then
+	installFlatpakPackage "us.zoom.Zoom" "Zoom"									              # Online meeting app
+  elif [[ $pkg == "Mission-Center" ]]; then
 	installFlatpakPackage "io.missioncenter.MissionCenter" "Mission Center"  	# System monitor
-  else if [[ pkg == "Gear-Lever"]]; then
-	installFlatpakPackage "it.mijorus.gearlever" "Gear Lever"           	 	# Manage AppImages
+  elif [[ $pkg == "Gear-Lever" ]]; then
+	installFlatpakPackage "it.mijorus.gearlever" "Gear Lever"           	  	# Manage AppImages
   fi
 done
 
