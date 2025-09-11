@@ -319,6 +319,19 @@ swapPackages(){
   fi
 }
 
+# Get the version of an installed app
+get_local_version() {
+	APP_NAME=$1
+
+    if rpm -q $APP_NAME >/dev/null 2>&1; then
+        rpm -q --qf "%{VERSION}-%{RELEASE}" $APP_NAME
+    else
+        echo ""
+    fi
+}
+
+
+
 # =======> Run Commands and log 
 runCmd() { #Cmd, description
   if eval "$1" &>/dev/null; then
@@ -426,7 +439,6 @@ delete_folder_if_exists() {
 
 
 # =======> Github related
-
 clone_repo() {
     # Check if required arguments are provided
     if [ $# -ne 3 ]; then
@@ -471,3 +483,21 @@ clone_repo() {
       return 1
     fi
 }
+
+# Get the URL of the latest RPM release from Github
+get_latest_url() {
+	REPO=$1
+
+    curl -s "https://api.github.com/repos/$REPO/releases/latest" \
+        | grep "browser_download_url" \
+        | grep "x86_64.rpm" \
+        | cut -d '"' -f 4 | head -n 1
+}
+
+# Get the version number from the github URL
+get_latest_version_from_url() {
+	URL=$1
+
+    basename "$URL" | sed -E 's/.*-([0-9]+\.[0-9]+\.[0-9]+-[0-9]+)\.x86_64\.rpm/\1/'
+} 
+

@@ -98,7 +98,7 @@ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/ 2>/dev/null
 
 # Changing settings of AppIndicator and KStatusNotifierItem Support
 logMiniInfo "Customizing AppIndicator and KStatusNotifierItem Support"
-gsettings set org.gnome.shell.extensions.appindicator tray-pos "center"
+gsettings set org.gnome.shell.extensions.appindicator tray-pos "right"
 
 # Changing settings of Dash-to-Panel
 logMiniInfo "Customizing Dash-to-Panel"
@@ -171,3 +171,8 @@ mkdir -p "$WALL_LOCATION"
 gsettings set org.gnome.shell.extensions.azwallpaper slideshow-directory "$WALL_LOCATION"
 gsettings set org.gnome.shell.extensions.azwallpaper slideshow-slide-duration "(24, 0, 0)"
 gsettings set org.gnome.shell.extensions.azwallpaper slideshow-use-absolute-time-for-duration true
+gsettings set org.gnome.shell.extensions.azwallpaper slideshow-queue-sort-type 'A-Z'
+gsettings set org.gnome.shell.extensions.azwallpaper slideshow-current-slide-index 8
+gnome-extensions disable azwallpaper@azwallpaper.gitlab.com
+sleep 2                                                           #To change the wallpaper
+gnome-extensions enable azwallpaper@azwallpaper.gitlab.com

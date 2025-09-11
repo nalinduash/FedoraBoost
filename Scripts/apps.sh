@@ -8,10 +8,6 @@ logScriptHead "Installing Apps"
 logScriptSubHead "Installing common apps"
 source "./Scripts/Apps/commonApps.sh"
 
-logScriptSubHead "Installing common apps with customizations"
-source "./Scripts/Apps/vlc.sh"
-source "./Scripts/Apps/ulauncher.sh"
-
 
 #Installing user's app selection
 if [ $# -ne 1 ]; then
@@ -26,21 +22,26 @@ if [ ! -s "$appfile" ]; then
   exit 1
 fi
 
-logScriptSubHead "Installing Flatpak applications from user's choice..."
+logScriptSubHead "Installing applications from user's choice..."
 for pkg in $(cat "$appfile"); do
   if [[ $pkg == "Zoom" ]]; then
 	installFlatpakPackage "us.zoom.Zoom" "Zoom"									              # Online meeting app
   elif [[ $pkg == "Mission-Center" ]]; then
-	installFlatpakPackage "io.missioncenter.MissionCenter" "Mission Center"  	# System monitor
+	installFlatpakPackage "io.missioncenter.MissionCenter" "Mission Center"  				  # System monitor
   elif [[ $pkg == "Gear-Lever" ]]; then
-	installFlatpakPackage "it.mijorus.gearlever" "Gear Lever"           	  	# Manage AppImages
+	installFlatpakPackage "it.mijorus.gearlever" "Gear Lever"           	  				  # Manage AppImages
+  elif [[ $pkg == "VLC" ]]; then
+    source "./Scripts/Apps/vlc.sh"
+  elif [[ $pkg == "Ulauncher" ]]; then
+    source "./Scripts/Apps/ulauncher.sh"
+  elif [[ $pkg == "Etcher" ]]; then
+    source "./Scripts/Apps/etcher.sh"
+  else
+    installPackages "$pkg"
   fi
 done
 
-logScriptSubHead "Installing applications from user's choice..."
-for pkg in $(cat "$appfile"); do
-  installPackages "$pkg"
-done
+rm ./app-selection.txt
 
 br
 logDone

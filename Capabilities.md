@@ -19,12 +19,7 @@ This script automates the post-installation setup of Fedora with a focus on perf
 ## 💻 Applications & Codecs
 
 * ✅ Install common apps (with some customization)
-  * 📥 LibreOffice
-  * 📥 ARK
-  * 📥 Obs-Studio
-  * 📥 Zoom
-  * 📥 Mission Center
-  * 📥 Gear Leaver
+  * Let users select what they want to install
 * ✅ Install full media codecs
 * ✅ Enable hardware video acceleration
 

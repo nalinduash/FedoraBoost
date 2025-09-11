@@ -10,7 +10,8 @@ declare -A categories
 categories=(
   ["Developer"]="git vim python3 python3-pip nodejs npm"
   ["Productivity"]="libreoffice"
-  ["Normal User"]="ark video-downloader Zoom Mission-Center Gear-Lever"
+  ["Normal User"]="video-downloader Zoom Mission-Center Gear-Lever Etcher"
+  ["Common"]="Ulauncher VLC ark"
   ["Creative"]="gimp inkscape blender krita audacity obs-studio kdenlive"
   ["System Tools"]="btop gparted curl wget"
   ["Gamer"]="lutris"
