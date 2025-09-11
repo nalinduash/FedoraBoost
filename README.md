@@ -40,6 +40,78 @@ That’s it! The script will guide you through the setup process.
 
 ---
 
+## 📦 Apps You Can Choose To Install
+
+Here are the apps you can pick when running this script. Each one has a short and simple meaning so you know what it does:
+
+👨‍💻 Developer
+   
+* git – Helps you save and share code.
+
+* vim – A fast text editor inside the terminal.
+
+* python3 – A language to make programs.
+
+* python3-pip – Adds extra tools for Python.
+
+* nodejs – Lets you run JavaScript outside the browser.
+
+* npm – Gets and manages JavaScript tools.
+
+📂 Productivity
+
+* libreoffice – Like Microsoft Office, but free.
+
+🧑 Normal User
+
+* video-downloader – Saves videos from the internet.
+
+* Zoom – Online video calls and meetings.
+
+* Mission-Center – Shows how your computer is working (CPU, RAM, etc.).
+
+* Gear-Lever – Manage special portable apps (AppImages).
+
+* Etcher – Create bootable USB/Pen drives
+
+🌍 Common
+
+* Ulauncher – Lets you open apps quickly and more
+
+* VLC – Plays videos and music.
+
+* ark – Opens and creates zip/rar files.
+
+🎨 Creative
+
+* gimp – Edit pictures and photos.
+
+* inkscape – Make logos and drawings.
+
+* blender – Create 3D models and animations.
+
+* krita – Paint and draw digitally.
+
+* audacity – Record and edit sounds.
+
+* obs-studio – Record your screen or stream online.
+
+* kdenlive – Edit videos easily.
+
+⚙️ System Tools
+
+* btop – Shows CPU, RAM, and what’s running.
+
+* gparted – Helps split and manage disks.
+
+* curl – Downloads stuff from the internet.
+
+* wget – Another way to download files.
+
+🎮 Gamer
+
+* lutris – Helps install and play games on Linux.
+
 ## 🛡️ Disclaimer
 
 * FedoraBoost scripts are provided **as-is**. Review them before running (recommended 👀).
