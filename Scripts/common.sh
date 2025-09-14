@@ -12,7 +12,7 @@ fi
 log_dir="$backup_dir/Logs"
 export log_path="$log_dir/log_minimal.txt"  
 export appfile="./app-selection.txt"
-export settings_backup="$backup_dir/settings_backup.txt"
+export settings_backup="$backup_dir/settings_backup.conf"
 
 
 # Show Messages ---------

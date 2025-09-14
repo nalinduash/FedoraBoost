@@ -21,7 +21,7 @@ while true; do
     logScriptSubHead "Select one or more categories (press Space to select, Enter to confirm):"
     mapfile -t selected_categories < <(printf "%s\n" "${!categories[@]}" | gum choose --no-limit)
 
-    # Build app list (with duplicates possible)
+    # Build app list
     app_list=()
     for category in "${selected_categories[@]}"; do
         for app in ${categories["$category"]}; do
@@ -29,16 +29,13 @@ while true; do
         done
     done
 
-    # Remove duplicates
-    unique_apps=($(printf "%s\n" "${app_list[@]}" | sort -u))
-
     # Let user prune apps
     logScriptSubHead "You selected categories. Now choose apps you want to REMOVE (press Space to select, Enter to confirm):"
-    mapfile -t remove_apps < <(printf "%s\n" "${unique_apps[@]}" | gum choose --no-limit)
+    mapfile -t remove_apps < <(printf "%s\n" "${app_list[@]}" | gum choose --no-limit)
 
     # Build final_apps = unique_apps - remove_apps
     final_apps=()
-    for app in "${unique_apps[@]}"; do
+    for app in "${app_list[@]}"; do
         skip=false
         for rem in "${remove_apps[@]}"; do
             if [[ "$app" == "$rem" ]]; then

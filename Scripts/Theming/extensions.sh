@@ -28,7 +28,7 @@ dconf dump /org/gnome/shell/extensions/ > "$backup_dir/gnome-extensions-settings
 logScriptMiniSubHead "Disabaling extensions"
 installPackages "gnome-extensions"
 for ext in $(gsettings get org.gnome.shell enabled-extensions | tr -d "[],'"); do
-    gnome-extensions disable "$ext"
+    gnome-extensions disable "$ext" &>/dev/null
 done
 
 # Delete existing extensions
