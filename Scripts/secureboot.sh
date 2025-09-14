@@ -54,11 +54,10 @@ if [[ -f "$AKMODS_CERT" ]]; then
     needs_enroll=false
   else
 	logInfo "Key exists but is not enrolled. We can generate a new key for you."
-	logHighlight "Enter Y only if you don't remember the previous password and stuck
+	logHighlight "Select 'Yes' only if you don't remember the previous password and stuck
 	with a blue screen at booting the machine up"
-	logHighlight "If you remember the password, enter N" 
-	read -p "Do you want to forcefully enroll a new key? (y/n): " confirm
-    if [[ $confirm =~ ^[Yy]$ ]]; then
+	logHighlight "If you remember the password, select 'No'" 
+    if gum confirm "Do you want to forcefully enroll a new key?"; then
       logInfo "Generating new akmods signing key with 'kmodgenca -a'..."
       if sudo kmodgenca -a --force; then
         logInfo "New akmods keypair generated."
@@ -79,8 +78,7 @@ fi
 # If not present, generate the key
 logScriptSubHead "Generating the key"
 if [[ ! -f "$AKMODS_CERT" ]]; then
-  read -p "No akmods key found at $AKMODS_CERT. Generate a new one? (y/n): " confirm
-  if [[ $confirm =~ ^[Yy]$ ]]; then
+  if gum confirm "No akmods key found at $AKMODS_CERT. Generate a new one?"; then
     logInfo "Generating akmods signing key with 'kmodgenca -a'..."
     if sudo kmodgenca -a; then
       logInfo "akmods keypair generated."

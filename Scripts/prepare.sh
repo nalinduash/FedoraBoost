@@ -13,7 +13,7 @@ installPackages "gum"
 # Backup sleeping and locking data
 logScriptSubHead "Backing-up auto-sleeping"
 echo "LOCK_ENABLED=$(gsettings get org.gnome.desktop.screensaver lock-enabled)" > "$settings_backup"
-echo "IDLE_DELAY=$(gsettings get org.gnome.desktop.session idle-delay | awk '{print $NF}')" >> "$BACKUP_FILE"
+echo "IDLE_DELAY=$(gsettings get org.gnome.desktop.session idle-delay | awk '{print $NF}')" >> "$settings_backup"
 
 # Stop sleeping and locking during the installation
 logScriptSubHead "Stopping auto-sleeping"
