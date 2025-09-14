@@ -7,8 +7,8 @@ find . -name "*.sh" -type f -exec chmod +x {} \; -print
 source ./Scripts/common.sh;
 
 # Create log files
-mkdir -p $log_dir
-touch $log_path
+mkdir -p "$log_dir"
+touch "$log_path"
 
 # Clear the screen
 clear
@@ -16,12 +16,15 @@ clear
 # Check if script is running with sudo privileges
 if [[ $EUID -eq 0 ]]; then
     logError "This script should not run with sudo privileges.\nPlease run it as a normal user";
-    exit 1
+    exit 0
 fi
 
 # Cache the sudo privilages so, user only need to enter password one time.
 logHighlight "Enter your password to begin customizations..."
-sudo -v
+if ! sudo -v &> /dev/null; then
+	logError "Script was stopped"
+	exit 1
+fi
 
 # Keep sudo credentials alive in the background
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
@@ -89,8 +92,7 @@ source ./Scripts/theming.sh;
 # Install Apps
 source ./Scripts/apps.sh "$appfile";
 
+# Finish Script
+source ./Scripts/finish.sh;
 
 # ===================END=======================
-# Enable default sleeping and locking behaviour
-gsettings set org.gnome.desktop.screensaver lock-enabled true
-gsettings set org.gnome.desktop.session idle-delay 300

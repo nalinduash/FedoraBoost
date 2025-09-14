@@ -7,13 +7,12 @@
 #                       V
 script_path="$(pwd)"
 if [ -z "$backup_dir" ]; then
-  export backup_dir="$HOME/old_dotfiles$(date +"%Y-%m-%d_%H-%M-%S")"
+  export backup_dir="./Backups/Backup_$(date +"%Y-%m-%d_%H-%M-%S")"
 fi
-log_dir="./Logs"
-if [ -z "$log_path" ]; then
-  export log_path="$log_dir/log_$(date +"%Y-%m-%d_%H-%M-%S").txt"  
-fi
-appfile="./app-selection.txt"
+log_dir="$backup_dir/Logs"
+export log_path="$log_dir/log_minimal.txt"  
+export appfile="./app-selection.txt"
+export settings_backup="$backup_dir/settings_backup.txt"
 
 
 # Show Messages ---------
