@@ -3,12 +3,28 @@
 # Make every .sh file executable
 find . -name "*.sh" -type f -exec chmod +x {} \; -print
 
+# Delete existing job_data file
+job_data="./Temp/job_data.txt"
+delete_file_if_exists $job_data
+
+# Create the backup folder
+backup_dir="$HOME/Backup_Dotfiles_$(date +"%Y-%m-%d_%H-%M-%S")"
+echo "backup_dir=$backup_dir" > "$job_data"
+log_dir="$backup_dir/Logs"
+echo "log_dir=$log_dir" >> "$job_data"
+log_minimal_path="$log_dir/log_minimal.txt" 
+echo "log_minimal_path=$log_minimal_path" >> "$job_data"
+settings_backup="$backup_dir/settings_backup.conf"
+echo "settings_backup=$settings_backup" >> "$job_data"
+appfile="./app-selection.txt"
+echo "appfile=$appfile" >> "$job_data"
+
 # Importing SH files
 source ./Scripts/common.sh;
 
 # Create log files
 mkdir -p "$log_dir"
-touch "$log_path"
+touch "$log_minimal_path"
 
 # Clear the screen
 clear
@@ -33,23 +49,23 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 clear
 
 # Display the ASCII art
-echo -e "\e[36m _        _______  _       _________ _        ______               " | tee -a $log_path;                  
-echo -e "( (    /|(  ___  )( \      \__   __/( (    /|(  __  \ |\     /|          " | tee -a $log_path; 
-echo -e "|  \  ( || (   ) || (         ) (   |  \  ( || (  \  )| )   ( |          " | tee -a $log_path;
-echo -e "|   \ | || (___) || |         | |   |   \ | || |   ) || |   | |          " | tee -a $log_path;
-echo -e "| (\ \) ||  ___  || |         | |   | (\ \) || |   | || |   | |          " | tee -a $log_path;
-echo -e "| | \   || (   ) || |         | |   | | \   || |   ) || |   | |          " | tee -a $log_path;
-echo -e "| )  \  || )   ( || (____/\___) (___| )  \  || (__/  )| (___) |          " | tee -a $log_path;
-echo -e "|/    )_)|/     \|(_______/\_______/|/    )_)(______/ (_______)          " | tee -a $log_path;
-echo -e "                                                                         " | tee -a $log_path;
-echo -e " ______   _______ _________ _______ _________ _        _______  _______  " | tee -a $log_path;
-echo -e "(  __  \ (  ___  )\__   __/(  ____ \\__   __/( \      (  ____ \(  ____ \ " | tee -a $log_path;
-echo -e "| (  \  )| (   ) |   ) (   | (    \/   ) (   | (      | (    \/| (    \/ " | tee -a $log_path;
-echo -e "| |   ) || |   | |   | |   | (__       | |   | |      | (__    | (_____  " | tee -a $log_path;
-echo -e "| |   | || |   | |   | |   |  __)      | |   | |      |  __)   (_____  ) " | tee -a $log_path;
-echo -e "| |   ) || |   | |   | |   | (         | |   | |      | (            ) | " | tee -a $log_path;
-echo -e "| (__/  )| (___) |   | |   | )      ___) (___| (____/\| (____/\/\____) | " | tee -a $log_path;
-echo -e "(______/ (_______)   )_(   |/       \_______/(_______/(_______/\_______)\e[0m" | tee -a $log_path;
+echo -e "\e[36m _        _______  _       _________ _        ______               " | tee -a $log_minimal_path;                  
+echo -e "( (    /|(  ___  )( \      \__   __/( (    /|(  __  \ |\     /|          " | tee -a $log_minimal_path; 
+echo -e "|  \  ( || (   ) || (         ) (   |  \  ( || (  \  )| )   ( |          " | tee -a $log_minimal_path;
+echo -e "|   \ | || (___) || |         | |   |   \ | || |   ) || |   | |          " | tee -a $log_minimal_path;
+echo -e "| (\ \) ||  ___  || |         | |   | (\ \) || |   | || |   | |          " | tee -a $log_minimal_path;
+echo -e "| | \   || (   ) || |         | |   | | \   || |   ) || |   | |          " | tee -a $log_minimal_path;
+echo -e "| )  \  || )   ( || (____/\___) (___| )  \  || (__/  )| (___) |          " | tee -a $log_minimal_path;
+echo -e "|/    )_)|/     \|(_______/\_______/|/    )_)(______/ (_______)          " | tee -a $log_minimal_path;
+echo -e "                                                                         " | tee -a $log_minimal_path;
+echo -e " ______   _______ _________ _______ _________ _        _______  _______  " | tee -a $log_minimal_path;
+echo -e "(  __  \ (  ___  )\__   __/(  ____ \\__   __/( \      (  ____ \(  ____ \ " | tee -a $log_minimal_path;
+echo -e "| (  \  )| (   ) |   ) (   | (    \/   ) (   | (      | (    \/| (    \/ " | tee -a $log_minimal_path;
+echo -e "| |   ) || |   | |   | |   | (__       | |   | |      | (__    | (_____  " | tee -a $log_minimal_path;
+echo -e "| |   | || |   | |   | |   |  __)      | |   | |      |  __)   (_____  ) " | tee -a $log_minimal_path;
+echo -e "| |   ) || |   | |   | |   | (         | |   | |      | (            ) | " | tee -a $log_minimal_path;
+echo -e "| (__/  )| (___) |   | |   | )      ___) (___| (____/\| (____/\/\____) | " | tee -a $log_minimal_path;
+echo -e "(______/ (_______)   )_(   |/       \_______/(_______/(_______/\_______)\e[0m" | tee -a $log_minimal_path;
 
 # Warning
 logWarning "This script will overwrite your existing configuration files. 🫤\nI will backup your existing configuration files to '$backup_dir' folder in the home directory. 😇";
