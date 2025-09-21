@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Source common.sh 
-source ./Scripts/common.sh;
+source ./Scripts/common.sh
 
 # Install packages
 logScriptMiniSubHead "Installing some packages"

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Importing SH files
-source ./Scripts/common.sh;
+source ./Scripts/common.sh
 
-logScriptHead "Adding Shortcut key combinations";
+logScriptHead "Adding Shortcut key combinations"
 
 # Add gnome's default shortcuts
 logScriptSubHead "Adding Gnome shortcuts"

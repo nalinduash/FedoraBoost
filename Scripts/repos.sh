@@ -7,22 +7,22 @@ source ./Scripts/common.sh
 # Add free and non-free repositories
 if ! dnf repolist --enabled | grep -q "^rpmfusion-free"; then
     if sudo dnf install -y -q https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm &>/dev/null; then
-        logPassInstall "RPM Fusion Free repository";
+        logPassInstall "RPM Fusion Free repository"
     else
-        logFailInstall "RPM Fusion Free repository";
+        logFailInstall "RPM Fusion Free repository"
     fi
 else
-    logAlreadyInstall "RPM Fusion Free repository";
+    logAlreadyInstall "RPM Fusion Free repository"
 fi
 
 if ! dnf repolist --enabled | grep -q "^rpmfusion-nonfree"; then
     if sudo dnf install -y -q https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm &>/dev/null; then
-        logPassInstall "RPM Fusion Non-Free repository";
+        logPassInstall "RPM Fusion Non-Free repository"
     else
-        logFailInstall "RPM Fusion Non-Free repository";
+        logFailInstall "RPM Fusion Non-Free repository"
     fi
 else
-    logAlreadyInstall "RPM Fusion Non-Free repository";
+    logAlreadyInstall "RPM Fusion Non-Free repository"
 fi
 
 
@@ -34,5 +34,5 @@ else
 fi
 
 # Summary
-logSummary "Free, Non-free and flatpak Repos Installation";
-logPass "All Repos Successfully installed";
+logSummary "Free, Non-free and flatpak Repos Installation"
+logPass "All Repos Successfully installed"

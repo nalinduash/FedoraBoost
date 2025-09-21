@@ -6,7 +6,7 @@ source ./Scripts/common.sh
 # Save backup data
 source "$settings_backup"
 
-logScriptHead "Finishing the Script";
+logScriptHead "Finishing the Script"
 
 # Restore the sleeping and locking behaviour
 logScriptSubHead "Restoring the sleeping and locking behaviour"
@@ -15,3 +15,9 @@ gsettings set org.gnome.desktop.session idle-delay "$IDLE_DELAY"
 
 logHighlight "Script was installed successfully"
 logHighlight "Now it is highly recommended to restart your computer."
+br
+br
+
+if gum confirm "Do you want to reboot now?"; then
+    reboot
+fi

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Importing SH files
-source ./Scripts/common.sh;
+source ./Scripts/common.sh
 
-logScriptHead "Performing some System Tweaks"; 
+logScriptHead "Performing some System Tweaks" 
 
 
 # ======> Media Codecs

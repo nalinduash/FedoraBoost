@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Importing SH files
-source ./Scripts/common.sh;
+source ./Scripts/common.sh
 
 # Constants
 REPO_URL="https://github.com/vinceliuice/Graphite-cursors.git"

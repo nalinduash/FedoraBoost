@@ -10,9 +10,9 @@ export job_data="./Temp/job_data.txt"		# Contains data need for the script to in
 if [[ -f "$job_data" ]]; then
 	source $job_data										# Load job_data file
 else
-	echo -e "\n\e[41mError:\e[0m";							# Display error in the traditional way because logError isn't still defined
-    echo -e "\e[33m☠️ -> No job_data file found \e[0m";
-	exit 1;
+	echo -e "\n\e[41mError:\e[0m"							# Display error in the traditional way because logError isn't still defined
+    echo -e "\e[33m☠️ -> No job_data file found \e[0m"
+	exit 1
 fi
 
 
@@ -24,105 +24,105 @@ fi
 #                       V
 
 logScriptHead(){
-    echo -e "\e[33m🥸 -> $1\e[0m";
-	echo -e "🥸 -> $1" >> $log_minimal_path;
+    echo -e "\e[33m🥸 -> $1\e[0m"
+	echo -e "🥸 -> $1" >> $log_minimal_path
 }
 
 logScriptSubHead(){
-    echo -e "\n\e[33m   👉 $1\e[0m";
-	echo -e "\n   👉 $1" >> $log_minimal_path;
+    echo -e "\n\e[33m   👉 $1\e[0m"
+	echo -e "\n   👉 $1" >> $log_minimal_path
 }
 
 logInfo(){
-    echo -e "\e[0m     ℹ️ $1";
-	echo -e "     ℹ️ $1" >> $log_minimal_path;
+    echo -e "\e[0m     ℹ️ $1"
+	echo -e "     ℹ️ $1" >> $log_minimal_path
 }
 
 logScriptMiniSubHead(){
-    echo -e "\e[33m     🫳 $1\e[0m";
-	echo -e "     🫳 $1" >> $log_minimal_path;
+    echo -e "\e[33m     🫳 $1\e[0m"
+	echo -e "     🫳 $1" >> $log_minimal_path
 }
 
 logMiniInfo(){
-    echo -e "\e[0m       ℹ️ $1";
-	echo -e "       ℹ️ $1" >> $log_minimal_path;
+    echo -e "\e[0m       ℹ️ $1"
+	echo -e "       ℹ️ $1" >> $log_minimal_path
 }
 
 logPass(){
-    echo -e "\e[32m     🟩 $1\e[0m";
-	echo -e "     🟩 $1" >> $log_minimal_path;
+    echo -e "\e[32m     🟩 $1\e[0m"
+	echo -e "     🟩 $1" >> $log_minimal_path
 }
 
 logFail(){
-    echo -e "\e[31m     🟥 $1\e[0m";
-	echo -e "     🟥 $1" >> $log_minimal_path;
+    echo -e "\e[31m     🟥 $1\e[0m"
+	echo -e "     🟥 $1" >> $log_minimal_path
 }
 
 logAlreadyInstall() {
-    echo -e "\e[32m     🟩 $1 is already installed\e[0m";
-	echo -e "     🟩 $1 is already installed" >> $log_minimal_path;
+    echo -e "\e[32m     🟩 $1 is already installed\e[0m"
+	echo -e "     🟩 $1 is already installed" >> $log_minimal_path
 }
 
 logPassInstall() {
-    echo -e "\e[32m     🟩 Successfully installed $1\e[0m";
-	echo -e "     🟩 Successfully installed $1" >> $log_minimal_path;
+    echo -e "\e[32m     🟩 Successfully installed $1\e[0m"
+	echo -e "     🟩 Successfully installed $1" >> $log_minimal_path
 }
 
 logFailInstall() {
-    echo -e "\e[31m     🟥 Failed to install $1\e[0m";
-	echo -e "     🟥 Failed to install $1" >> $log_minimal_path;
+    echo -e "\e[31m     🟥 Failed to install $1\e[0m"
+	echo -e "     🟥 Failed to install $1" >> $log_minimal_path
 }
 
 logHighlight(){
-    echo -e "\e[0m📢 -> \e[43m$1\e[0m";
-	echo -e "Important:" >> $log_minimal_path;
-	echo -e "📢 -> $1" >> $log_minimal_path;
+    echo -e "\e[0m📢 -> \e[43m$1\e[0m"
+	echo -e "Important:" >> $log_minimal_path
+	echo -e "📢 -> $1" >> $log_minimal_path
 }
 
 logData(){
-    echo -e "\e[0m$1";
-	echo -e "$1" >> $log_minimal_path;
+    echo -e "\e[0m$1"
+	echo -e "$1" >> $log_minimal_path
 }
 
 logDone(){
-    echo -e "\e[32m☑️ Done \e[0m";
-	echo -e "☑️ Done " >> $log_minimal_path;
+    echo -e "\e[32m☑️ Done \e[0m"
+	echo -e "☑️ Done " >> $log_minimal_path
 }
 
 logWarning() {
-    echo -e "\n\e[31mWarning !!!:";
-    echo -e "\e[33m⚠️ -> $1 \e[0m";
-	echo -e "\nWarning !!!:" >> $log_minimal_path;
-    echo -e "⚠️ -> $1 " >> $log_minimal_path;
+    echo -e "\n\e[31mWarning !!!:"
+    echo -e "\e[33m⚠️ -> $1 \e[0m"
+	echo -e "\nWarning !!!:" >> $log_minimal_path
+    echo -e "⚠️ -> $1 " >> $log_minimal_path
 }
 
 logError() {
-    echo -e "\n\e[41mError:\e[0m";
-    echo -e "\e[33m☠️ -> $1 \e[0m";
-	echo -e "\nError:" >> $log_minimal_path;
-    echo -e "☠️ -> $1 " >> $log_minimal_path;
+    echo -e "\n\e[41mError:\e[0m"
+    echo -e "\e[33m☠️ -> $1 \e[0m"
+	echo -e "\nError:" >> $log_minimal_path
+    echo -e "☠️ -> $1 " >> $log_minimal_path
 }
 
 logMessage() {
-    echo -e "\nMessage:";
-    echo -e "\e[33m🥸 -> $1\e[0m";
-	echo -e "\nMessage:" >> $log_minimal_path;
-    echo -e "🥸 -> $1" >> $log_minimal_path;
+    echo -e "\nMessage:"
+    echo -e "\e[33m🥸 -> $1\e[0m"
+	echo -e "\nMessage:" >> $log_minimal_path
+    echo -e "🥸 -> $1" >> $log_minimal_path
 }
 
 br() {
-    echo -e "";
-	echo -e "" >> $log_minimal_path;
+    echo -e ""
+	echo -e "" >> $log_minimal_path
 }
 
 br5(){
-    echo -e "\n\n\n\n";
-	echo -e "\n\n\n\n" >> $log_minimal_path;
+    echo -e "\n\n\n\n"
+	echo -e "\n\n\n\n" >> $log_minimal_path
 }
 
 logSummary() {
-    echo -e "\n\e[36m🗒️     === $1 Summary ===\e[0m";
-	echo -e "\n🗒️     === $1 Summary ===" >> $log_minimal_path;
+    echo -e "\n\e[36m🗒️     === $1 Summary ===\e[0m"
+	echo -e "\n🗒️     === $1 Summary ===" >> $log_minimal_path
 }
 
 
@@ -172,7 +172,7 @@ installPackages(){
     return 0
   fi
   if rpm -q "$1" &>/dev/null; then
-    logAlreadyInstall "$1";
+    logAlreadyInstall "$1"
   else
     sudo dnf install -y "$1" &>/dev/null &
     INSTALL_PID=$!

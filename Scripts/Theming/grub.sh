@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Importing SH files
-source ./Scripts/common.sh;
+source ./Scripts/common.sh
 
 # Vimix theme repo
 THEME_REPO="https://github.com/vinceliuice/grub2-themes.git"

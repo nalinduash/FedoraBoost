@@ -24,7 +24,7 @@ logData "All GPUs -->"
 logData "$GPU_INFO"
 HAS_NVIDIA=0
 if ! echo "$GPU_INFO" | grep -qi 'NVIDIA'; then 
-  HAS_NVIDIA=1; 
+  HAS_NVIDIA=1
   logPass "No Nvdia card found. So, no need to manage the secure boot"
   exit 0
 fi
