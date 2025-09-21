@@ -1,25 +1,16 @@
 #!/bin/bash
 
 # Importing SH files
-source ./Scripts/common.sh;
+source ./Scripts/common.sh
 
-logScriptHead "Performing some System Tweaks";
-
-# ======> Update core
-logScriptSubHead "Updating the core of Fedora"
-runCmd "sudo dnf group upgrade -y core" "Updating the core of Fedora"
- 
-
-# ======> For appimages
-logScriptSubHead "Installing some apps"
-installPackages "fuse"                              # To open AppImages
+logScriptHead "Performing some System Tweaks" 
 
 
 # ======> Media Codecs
 logScriptSubHead "Installing Media Codecs"
 installDnfGroup "multimedia"                                        # Video codecs through GStreamer
 # Video codecs through ffmpeg
-runCmd "sudo dnf swap -y 'ffmpeg-free' 'ffmpeg' --allowerasing" "Install full ffmpeg"    
+swapPackages "ffmpeg-free" "ffmpeg"    
 # Exclude a problematic package
 runCmd "sudo dnf upgrade -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin" "Exclude problematic packages"      
 
@@ -55,11 +46,11 @@ logScriptSubHead "Installing drivers for AMD"
 if (( HAS_AMD )); then
   logInfo "Found an AMD GPU"
   # 64-bit swaps
-  runCmd "sudo dnf swap -y --allowerasing mesa-va-drivers mesa-va-drivers-freeworld" "Installing 64-bit mesa va drivers..."
-  runCmd "sudo dnf swap -y --allowerasing mesa-vdpau-drivers mesa-vdpau-drivers-freeworld" "Installing 64-bit mesa vdpau drivers..."
+  swapPackages "mesa-va-drivers" "mesa-va-drivers-freeworld"
+  swapPackages "mesa-vdpau-drivers" "mesa-vdpau-drivers-freeworld"
   # 32-bit swaps
-  runCmd "sudo dnf swap -y --allowerasing mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686" "Installing 32-bit mesa va drivers..."
-  runCmd "sudo dnf swap -y --allowerasing mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686" "Installing 32-bit mesa vdpau drivers.."
+  swapPackages "mesa-va-drivers.i686" "mesa-va-drivers-freeworld.i686"
+  swapPackages "mesa-vdpau-drivers.i686" "mesa-vdpau-drivers-freeworld.i686"
 else
   logPass "No AMD GPU detected; skipping AMD-specific swaps."
 fi

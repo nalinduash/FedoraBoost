@@ -5,7 +5,7 @@ source ./Scripts/common.sh
 
 # Hardcoded paths
 SRC="./Assets/Wallpapers"
-DEST="$HOME/.local/share/backgrounds/nalindu-dotfiles"
+DEST="$HOME/.local/share/backgrounds/FedoraBoost"
 
 # Create destination folder if not exists
 logScriptMiniSubHead "Creating destination folder if not exists"
@@ -21,7 +21,7 @@ URI="file://$TARGET"
 
 # Set GNOME wallpaper (light & dark)
 logScriptMiniSubHead "Setting GNOME wallpaper"
-gsettings set org.gnome.desktop.background picture-uri "$URI-4.jpg"
-gsettings set org.gnome.desktop.background picture-uri-dark "$URI-4.jpg"
+gsettings set org.gnome.desktop.background picture-uri "$URI-9.png"
+gsettings set org.gnome.desktop.background picture-uri-dark "$URI-9.png"
 
 logPass "Wallpapers successfully added"

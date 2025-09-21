@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Source common.sh 
-source ./Scripts/common.sh;
+source ./Scripts/common.sh
 
 # Install packages
 logScriptMiniSubHead "Adding some packages"
@@ -9,6 +9,11 @@ addRepo "scottames/ghostty"                 # Add repository containing ghostty
 installPackages "fastfetch"                 # Show system information
 installPackages "ghostty"                   # Powerful terminal
 installPackages "fish"                      # Fast shell interpreter 
+
+# Add configs for ghostty
+logScriptMiniSubHead "Adding configs for ghostty"
+delete_file_if_exists "$HOME/.config/ghostty/config"
+cp "./Assets/Configs/ghostty/config" "$HOME/.config/ghostty/"
 
 # Install oh-my-posh 
 logScriptMiniSubHead "Installing Oh-My-Posh"

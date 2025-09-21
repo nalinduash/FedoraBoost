@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Importing SH files
-source ./Scripts/common.sh;
+source ./Scripts/common.sh
 
 # Vimix theme repo
 THEME_REPO="https://github.com/vinceliuice/grub2-themes.git"
@@ -20,8 +20,7 @@ installPackages grub2-tools
 # Clone repo
 logScriptMiniSubHead "Cloning repo into $TEMP_DIR"
 delete_folder_if_exists "$TEMP_DIR"
-mkdir -p "$TEMP_DIR"
-git clone --depth=1 "$THEME_REPO" "$TEMP_DIR"
+clone_repo "$THEME_REPO" "$TEMP_DIR" "Grub2-themes"
 
 logScriptMiniSubHead "Installing theme into /boot/grub2/themes/$THEME_NAME..."
 mkdir -p /boot/grub2/themes

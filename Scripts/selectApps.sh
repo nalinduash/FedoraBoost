@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Importing SH files
+source ./Scripts/common.sh
+
+logScriptHead "Selecting apps to be installed..."
+
+# Categories and apps
+declare -A categories
+categories=(
+  ["Developer"]="git vim python3 python3-pip nodejs npm"
+  ["Productivity"]="libreoffice"
+  ["Normal User"]="video-downloader Zoom Mission-Center Gear-Lever Etcher"
+  ["Common"]="Ulauncher VLC ark"
+  ["Creative"]="gimp inkscape blender krita audacity obs-studio kdenlive"
+  ["System Tools"]="btop gparted curl wget"
+  ["Gamer"]="lutris"
+)
+
+while true; do
+    logScriptSubHead "Select one or more categories (press Space to select, Enter to confirm):"
+    mapfile -t selected_categories < <(printf "%s\n" "${!categories[@]}" | gum choose --no-limit)
+
+    # Build app list
+    app_list=()
+    for category in "${selected_categories[@]}"; do
+        for app in ${categories["$category"]}; do
+            app_list+=("$app")
+        done
+    done
+
+    # Let user prune apps
+    logScriptSubHead "You selected categories. Now choose apps you want to REMOVE (press Space to select, Enter to confirm):"
+    mapfile -t remove_apps < <(printf "%s\n" "${app_list[@]}" | gum choose --no-limit)
+
+    # Build final_apps = unique_apps - remove_apps
+    final_apps=()
+    for app in "${app_list[@]}"; do
+        skip=false
+        for rem in "${remove_apps[@]}"; do
+            if [[ "$app" == "$rem" ]]; then
+                skip=true
+                break
+            fi
+        done
+        if ! $skip; then
+            final_apps+=("$app")
+        fi
+    done
+
+    br
+    logInfo "Final app list:"
+    printf " - %s\n" "${final_apps[@]}"
+    br
+
+    # Ask if satisfied
+    if gum confirm "Do you want to continue with this list?"; then
+        break
+    else
+        logInfo "Okay, lets try again..."
+    fi
+done
+
+# Save to file
+printf "%s\n" "${final_apps[@]}" > "$appfile"
+
+logDone
+br5

@@ -5,8 +5,15 @@
 #                       |
 #                       |
 #                       V
-script_path="$(pwd)"
-backup_dir="$HOME/old_dotfiles$(date +"%Y-%m-%d_%H-%M-%S")"
+
+export job_data="./Temp/job_data.txt"		# Contains data need for the script to install properly
+if [[ -f "$job_data" ]]; then
+	source $job_data										# Load job_data file
+else
+	echo -e "\n\e[41mError:\e[0m"							# Display error in the traditional way because logError isn't still defined
+    echo -e "\e[33m☠️ -> No job_data file found \e[0m"
+	exit 1
+fi
 
 
 
@@ -17,91 +24,105 @@ backup_dir="$HOME/old_dotfiles$(date +"%Y-%m-%d_%H-%M-%S")"
 #                       V
 
 logScriptHead(){
-    echo -e "\e[33m🥸 -> $1\e[0m";
+    echo -e "\e[33m🥸 -> $1\e[0m"
+	echo -e "🥸 -> $1" >> $log_minimal_path
 }
 
 logScriptSubHead(){
-    echo -e "";
-    echo -e "\e[33m   👉 $1\e[0m";
+    echo -e "\n\e[33m   👉 $1\e[0m"
+	echo -e "\n   👉 $1" >> $log_minimal_path
 }
 
 logInfo(){
-    echo -e "\e[0m     ℹ️ $1";
+    echo -e "\e[0m     ℹ️ $1"
+	echo -e "     ℹ️ $1" >> $log_minimal_path
 }
 
 logScriptMiniSubHead(){
-    echo -e "\e[33m     🫳 $1\e[0m";
+    echo -e "\e[33m     🫳 $1\e[0m"
+	echo -e "     🫳 $1" >> $log_minimal_path
 }
 
 logMiniInfo(){
-    echo -e "\e[0m       ℹ️ $1";
+    echo -e "\e[0m       ℹ️ $1"
+	echo -e "       ℹ️ $1" >> $log_minimal_path
 }
 
 logPass(){
-    echo -e "\e[32m     ✅ $1\e[0m";
+    echo -e "\e[32m     🟩 $1\e[0m"
+	echo -e "     🟩 $1" >> $log_minimal_path
 }
 
 logFail(){
-    echo -e "\e[31m     ❎ $1\e[0m";
+    echo -e "\e[31m     🟥 $1\e[0m"
+	echo -e "     🟥 $1" >> $log_minimal_path
 }
 
 logAlreadyInstall() {
-    echo -e "\e[32m     ✅ $1 is already installed\e[0m";
+    echo -e "\e[32m     🟩 $1 is already installed\e[0m"
+	echo -e "     🟩 $1 is already installed" >> $log_minimal_path
 }
 
 logPassInstall() {
-    echo -e "\e[32m     ✅ Successfully installed $1\e[0m";
+    echo -e "\e[32m     🟩 Successfully installed $1\e[0m"
+	echo -e "     🟩 Successfully installed $1" >> $log_minimal_path
 }
 
 logFailInstall() {
-    echo -e "\e[31m     ❎ Failed to install $1\e[0m";
+    echo -e "\e[31m     🟥 Failed to install $1\e[0m"
+	echo -e "     🟥 Failed to install $1" >> $log_minimal_path
 }
 
 logHighlight(){
-    echo -e "\e[43m$1\e[0m";
+    echo -e "\e[0m📢 -> \e[43m$1\e[0m"
+	echo -e "Important:" >> $log_minimal_path
+	echo -e "📢 -> $1" >> $log_minimal_path
 }
 
 logData(){
-    echo -e "\e[0m$1";
+    echo -e "\e[0m$1"
+	echo -e "$1" >> $log_minimal_path
 }
 
 logDone(){
-    echo -e "\e[32m☑️ Done \e[0m";
+    echo -e "\e[32m☑️ Done \e[0m"
+	echo -e "☑️ Done " >> $log_minimal_path
 }
 
 logWarning() {
-    echo -e "";
-    echo -e "\e[31mWarning !!!";
-    echo -e "\e[33m$1 \e[0m";
+    echo -e "\n\e[31mWarning !!!:"
+    echo -e "\e[33m⚠️ -> $1 \e[0m"
+	echo -e "\nWarning !!!:" >> $log_minimal_path
+    echo -e "⚠️ -> $1 " >> $log_minimal_path
 }
 
 logError() {
-    echo -e "";
-    echo -e "\e[41mError:\e[0m";
-    echo -e "\e[33m☠️ -> $1 \e[0m";
+    echo -e "\n\e[41mError:\e[0m"
+    echo -e "\e[33m☠️ -> $1 \e[0m"
+	echo -e "\nError:" >> $log_minimal_path
+    echo -e "☠️ -> $1 " >> $log_minimal_path
 }
 
 logMessage() {
-    echo -e "";
-    echo -e "Message:";
-    echo -e "\e[33m🥸 -> $1\e[0m";
+    echo -e "\nMessage:"
+    echo -e "\e[33m🥸 -> $1\e[0m"
+	echo -e "\nMessage:" >> $log_minimal_path
+    echo -e "🥸 -> $1" >> $log_minimal_path
 }
 
 br() {
-    echo -e "";
+    echo -e ""
+	echo -e "" >> $log_minimal_path
 }
 
 br5(){
-    echo -e "";
-    echo -e "";
-    echo -e "";
-    echo -e "";
-    echo -e "";
+    echo -e "\n\n\n\n"
+	echo -e "\n\n\n\n" >> $log_minimal_path
 }
 
 logSummary() {
-    echo -e "";
-    echo -e "\e[36m     === $1 Summary ===\e[0m";
+    echo -e "\n\e[36m🗒️     === $1 Summary ===\e[0m"
+	echo -e "\n🗒️     === $1 Summary ===" >> $log_minimal_path
 }
 
 
@@ -121,19 +142,48 @@ add_configs() {
 
 
 # =======> Installing packages if not installed
+
+# Reusable spinner animation
+spinner() {
+  local pid=$1     # PID of the process to wait for
+  local msg=$2     # Message to show
+  local total=10   # Number of dots
+
+  while kill -0 "$pid" 2>/dev/null; do
+    for ((i=1; i<=total; i++)); do
+      local bar=""
+      for ((j=1; j<=total; j++)); do
+        if (( j <= i )); then
+          bar+="●"
+        else
+          bar+="○"
+        fi
+      done
+      printf "\r     %s \e[0;34m[:%s:]\e[0m" "$msg" "$bar"
+      sleep 0.15
+    done
+  done
+  printf "\r\033[K"  # Clear the line after done
+}
+
 installPackages(){
   if [[ -z "$1" ]]; then
     logInfo "No packages are provided to install"
     return 0
   fi
   if rpm -q "$1" &>/dev/null; then
-    logAlreadyInstall "$1";
+    logAlreadyInstall "$1"
   else
-    if sudo dnf install -y "$1" &>/dev/null; then
+    sudo dnf install -y "$1" &>/dev/null &
+    INSTALL_PID=$!
+	spinner "$INSTALL_PID" "Installing [$1]"
+
+    wait "$INSTALL_PID"
+    if [[ $? -eq 0 ]]; then
       logPassInstall "$1"
     else
       logFailInstall "$1"
-      exit 1;
+      exit 1
     fi
   fi
 }
@@ -157,22 +207,30 @@ installPipPackages() {
     if pip3 show "$1" &> /dev/null; then
       logPass "$1 pip packages is already installed" 
     else
-      pip3 install --upgrade $1
+      pip3 install --upgrade "$1" &>/dev/null &
+      INSTALL_PID=$!
+	  spinner "$INSTALL_PID" "Installing [$1]"
+	  wait "$INSTALL_PID"
       if pip3 show "$1" &> /dev/null; then
-        logPass "$1 pip package installed." 
+        logPassInstall "$1" 
       else
-        logFail "$1 pip package is not installed." 
+        logFailInstall "$1"
+        exit 1 
       fi
     fi
   else
     if pip3 show "$1" &> /dev/null; then
       logPass "$1 pip packages is already installed" 
     else
-      pip3 install --upgrade $1
+      pip3 install --upgrade "$1" &>/dev/null &
+      INSTALL_PID=$!
+	  spinner "$INSTALL_PID" "Installing [$1]"
+	  wait "$INSTALL_PID"
       if pip3 show "$1" &> /dev/null; then
-        logPass "$1 pip package installed." 
+        logPassInstall "$1" 
       else
-        logFail "$1 pip package is not installed." 
+        logFailInstall "$1"
+        exit 1 
       fi
     fi
   fi
@@ -204,9 +262,56 @@ ensureFlatpak(){
 installFlatpakPackage(){
   ensureFlatpak
   if flatpak list --app | grep -q "$1"; then
-    logAlreadyInstall "$1"
+    logAlreadyInstall "$2"
   else
-    if flatpak install -y flathub "$1" &>/dev/null; then
+    flatpak install -y flathub "$1" &>/dev/null &
+    INSTALL_PID=$!
+    spinner "$INSTALL_PID" "Installing [$2]"
+    wait "$INSTALL_PID"
+    if [[ $? -eq 0 ]]; then
+      logPassInstall "$2"
+    else
+      logFailInstall "$2"
+      exit 1
+    fi
+  fi
+}
+
+# DNF Group Install
+installDnfGroup(){
+  local group="$1"
+
+  if dnf group list --installed | grep -q "^   $group$"; then
+    logAlreadyInstall "Group: $group"
+  else
+    sudo dnf group install -y "$group" &>/dev/null &
+    INSTALL_PID=$!
+    spinner "$INSTALL_PID" "Installing Group [$group]"
+    wait "$INSTALL_PID"
+    if [[ $? -eq 0 ]]; then
+      logPassInstall "Group: $group"
+    else
+      logFailInstall "Group: $group"
+      exit 1
+    fi
+  fi
+}
+
+# Swap packages
+swapPackages(){
+  if [ $# -ne 2 ]; then
+    logError "Missing argumnets for swapPackages"
+    exit 0
+  fi
+  if dnf list --installed "$2" &>/dev/null; then
+    logAlreadyInstall "$2";
+  else
+    sudo dnf swap -y "$1" "$2" --allowerasing &>/dev/null &
+    INSTALL_PID=$!
+	spinner "$INSTALL_PID" "Swapping [$1] with [$2]"
+
+    wait "$INSTALL_PID"
+    if [[ $? -eq 0 ]]; then
       logPassInstall "$1"
     else
       logFailInstall "$1"
@@ -215,19 +320,17 @@ installFlatpakPackage(){
   fi
 }
 
-# DNF Group Install
-installDnfGroup(){
-  if dnf group info "$1" 2>/dev/null | grep -q "Installed"; then
-    logAlreadyInstall "group: $1"
-  else
-    if sudo dnf group install -y "$1" &>/dev/null; then
-      logPassInstall "group: $1"
+# Get the version of an installed app
+get_local_version() {
+	APP_NAME=$1
+
+    if rpm -q $APP_NAME >/dev/null 2>&1; then
+        rpm -q --qf "%{VERSION}-%{RELEASE}" $APP_NAME
     else
-      logFailInstall "group: $1"
-      exit 1
+        echo ""
     fi
-  fi
 }
+
 
 
 # =======> Run Commands and log 
@@ -334,3 +437,68 @@ delete_folder_if_exists() {
         rm -rf "$folder" && logPass "Deleted: $folder" || logFail "Failed to delete: $folder"
     fi
 }
+
+
+# =======> Github related
+clone_repo() {
+    # Check if required arguments are provided
+    if [ $# -ne 3 ]; then
+        logError "Missing arguments for cloning repo"
+        return 1
+    fi
+
+    local repo_url="$1"
+    local dest_path="$2"
+	local name="$3"
+
+    # Validate repository URL
+    if [[ ! "$repo_url" =~ ^https://github.com/.*\.git$ ]]; then
+        logError "Invalid GitHub repository URL"
+        return 1
+    fi
+
+    # Check if destination directory already exists
+    if [ -d "$dest_path" ]; then
+        logWarning "Destination path '$dest_path' already exists"
+        logInfo "Deleting it"
+		rm -rf $dest_path
+    fi
+
+    # Create parent directory if it doesn't exist
+    mkdir -p "$(dirname "$dest_path")" || {
+        logError "Failed to create parent directory for '$dest_path'"
+        return 1
+    }
+
+    # Clone the repository
+    logMiniInfo "Cloning repository $name"
+    git clone --depth=1 "$repo_url" "$dest_path" &>/dev/null &
+    INSTALL_PID=$!
+	spinner "$INSTALL_PID" "Clonning repo: [$name]"
+
+    wait "$INSTALL_PID"
+    if [[ $? -eq 0 ]]; then
+      logPass "$name repo is successfully cloned"
+    else
+      logFail "$name repo is failed to clone"
+      return 1
+    fi
+}
+
+# Get the URL of the latest RPM release from Github
+get_latest_url() {
+	REPO=$1
+
+    curl -s "https://api.github.com/repos/$REPO/releases/latest" \
+        | grep "browser_download_url" \
+        | grep "x86_64.rpm" \
+        | cut -d '"' -f 4 | head -n 1
+}
+
+# Get the version number from the github URL
+get_latest_version_from_url() {
+	URL=$1
+
+    basename "$URL" | sed -E 's/.*-([0-9]+\.[0-9]+\.[0-9]+-[0-9]+)\.x86_64\.rpm/\1/'
+} 
+

@@ -1,20 +1,20 @@
 #!/bin/bash
 
 # Importing SH files
-source ./Scripts/common.sh;
+source ./Scripts/common.sh
 
 # Constants
 REPO_URL="https://github.com/vinceliuice/Graphite-cursors.git"
-INSTALL_DIR="$HOME/.local/share/icons"
 DEFAULT_THEME_NAME="Graphite-dark-nord-cursors"
 TEMP_DIR="./Temp/Cursor/"
+INSTALL_DIR="$HOME/.local/share/icons"
 
 # Get current theme
 current_theme=$(gsettings get org.gnome.desktop.interface cursor-theme | tr -d "'")
 
 # Check if the theme already applied
 if [[ "$current_theme" == "$DEFAULT_THEME_NAME" ]]; then
-    echo "Cursor theme already set to $DEFAULT_THEME_NAME"
+    logPass "Cursor theme already set to $DEFAULT_THEME_NAME"
     return 0
 fi
 
@@ -23,7 +23,7 @@ logScriptMiniSubHead "Cloning repo into $TEMP_DIR"
 br
 delete_folder_if_exists "$TEMP_DIR"
 mkdir -p "$TEMP_DIR"
-git clone "$REPO_URL" "$TEMP_DIR"
+clone_repo "$REPO_URL" "$TEMP_DIR" "$DEFAULT_THEME_NAME"
 br
 
 # Remove if already exists
@@ -33,8 +33,10 @@ delete_folder_if_exists "$INSTALL_DIR/Graphite-dark-nord-cursors"
 
 # Install
 logScriptMiniSubHead "Installing cursor theme"
-cp -r "$TEMP_DIR/dist-light-nord" $INSTALL_DIR/Graphite-light-nord-cursors
-cp -r "$TEMP_DIR/dist-dark-nord" $INSTALL_DIR/Graphite-dark-nord-cursors
+mkdir -p "$INSTALL_DIR/Graphite-light-nord-cursors"
+mkdir -p "$INSTALL_DIR/Graphite-dark-nord-cursors"
+cp -r "$TEMP_DIR/dist-light-nord" "$INSTALL_DIR/Graphite-light-nord-cursors"
+cp -r "$TEMP_DIR/dist-dark-nord" "$INSTALL_DIR/Graphite-dark-nord-cursors"
 
 # Set the cursor theme in GNOME
 logScriptMiniSubHead "Setting cursor theme to Graphite-Cursors"

@@ -3,11 +3,17 @@
 # Importing SH files
 source ./Scripts/common.sh
 
-logScriptHead "Starting customization...";
+logScriptHead "Starting customization..."
 
 # Adding some needed packages for the installation
 logScriptSubHead "Adding some needed packages for the installation"
 installPackages "curl"
+installPackages "gum"
+
+# Backup sleeping and locking data
+logScriptSubHead "Backing-up auto-sleeping"
+echo "LOCK_ENABLED=$(gsettings get org.gnome.desktop.screensaver lock-enabled)" > "$settings_backup"
+echo "IDLE_DELAY=$(gsettings get org.gnome.desktop.session idle-delay | awk '{print $NF}')" >> "$settings_backup"
 
 # Stop sleeping and locking during the installation
 logScriptSubHead "Stopping auto-sleeping"
@@ -20,11 +26,11 @@ add_configs "/etc/dnf/dnf.conf" "max_parallel_downloads=10"
 add_configs "/etc/dnf/dnf.conf" "fastestmirror=True"
 
 # Enabaling RPM fusion Repos
-logScriptSubHead "Enabaling RPM fusion Repos";
-source ./Scripts/repos.sh;
+logScriptSubHead "Enabaling RPM fusion Repos"
+source ./Scripts/repos.sh
 
 # Update system
-logScriptSubHead "Updating the system";
+logScriptSubHead "Updating the system"
 sudo dnf update && sudo dnf upgrade 
 
 logDone

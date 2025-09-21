@@ -24,7 +24,7 @@ installFonts() {
             logPass "$font font installed successfully."
         else
             logFail "Failed to install $font font."
-            exit 1;
+            exit 1
         fi
         fi
     done

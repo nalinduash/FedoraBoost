@@ -1,0 +1,15 @@
+Added progress bar for installing applications
+Removed error messages in gnome extensions installation
+Backup Gnome Extensions and their configurations
+Let user forcefully generate a new key if they don't remember the previous one and stuck with a blue screen(Enrolling MOK) at booting.
+Replaced Dash-to-Dock with Dash-to-Panel for stability
+Added Ulauncher, Etcher
+Added app selection
+Script speed improved
+Added flatpak app selection
+Backup gnome sleep settings
+Cleaned up script
+
+Bug Fixed: Sudden logout fixed.
+Bug Fixed: Blur inconsistancy fixed.
+Bug Fixed: Backup naming conflict fixed.
