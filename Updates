@@ -1,6 +1,5 @@
 Added progress bar for installing applications
-Removed error messages in gnome extensions installation 
-Now, every log details will be saved in a seperate file like "./Logs/log_$Date...."
+Removed error messages in gnome extensions installation
 Backup Gnome Extensions and their configurations
 Let user forcefully generate a new key if they don't remember the previous one and stuck with a blue screen(Enrolling MOK) at booting.
 Replaced Dash-to-Dock with Dash-to-Panel for stability
@@ -12,4 +11,5 @@ Backup gnome sleep settings
 
 
 Bug Fixed: Sudden logout fixed.
-Bug Fixed: Blur inconsistancy fixed. 
+Bug Fixed: Blur inconsistancy fixed.
+Bug Fixed: Backup naming conflict fixed.

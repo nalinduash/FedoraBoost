@@ -33,6 +33,8 @@ delete_folder_if_exists "$INSTALL_DIR/Graphite-dark-nord-cursors"
 
 # Install
 logScriptMiniSubHead "Installing cursor theme"
+mkdir -p "$INSTALL_DIR/Graphite-light-nord-cursors"
+mkdir -p "$INSTALL_DIR/Graphite-dark-nord-cursors"
 cp -r "$TEMP_DIR/dist-light-nord" "$INSTALL_DIR/Graphite-light-nord-cursors"
 cp -r "$TEMP_DIR/dist-dark-nord" "$INSTALL_DIR/Graphite-dark-nord-cursors"
 

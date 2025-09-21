@@ -3,16 +3,7 @@
 # Importing SH files
 source ./Scripts/common.sh;
 
-logScriptHead "Performing some System Tweaks";
-
-# ======> Update core
-logScriptSubHead "Updating the core of Fedora"
-runCmd "sudo dnf group upgrade -y core" "Updating the core of Fedora"
- 
-
-# ======> For appimages
-logScriptSubHead "Installing some apps"
-installPackages "fuse"                              # To open AppImages
+logScriptHead "Performing some System Tweaks"; 
 
 
 # ======> Media Codecs

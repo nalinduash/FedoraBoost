@@ -12,3 +12,6 @@ logScriptHead "Finishing the Script";
 logScriptSubHead "Restoring the sleeping and locking behaviour"
 gsettings set org.gnome.desktop.screensaver lock-enabled "$LOCK_ENABLED"
 gsettings set org.gnome.desktop.session idle-delay "$IDLE_DELAY"
+
+logHighlight "Script was installed successfully"
+logHighlight "Now it is highly recommended to restart your computer."
