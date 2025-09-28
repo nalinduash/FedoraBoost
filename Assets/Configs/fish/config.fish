@@ -38,3 +38,28 @@ if status is-interactive
     # Disable the default greeting
     set -g fish_greeting
 end
+
+
+# Alias (packages)
+alias update='sudo dnf update && gext update'
+alias updatep='sudo dnf update'
+alias updateg='gext update'
+alias upgrade='sudo dnf upgrade'
+alias add='sudo dnf install $1'
+alias delete='sudo dnf remove $1'
+alias search='dnf search $1'
+alias uu="sudo dnf update && sudo dnf upgrade"
+
+# Alias (system)
+alias bye='systemctl poweroff'
+
+# Alias (common)
+alias c='clear'  
+alias h='history' 
+
+# Alias (other)
+alias ff='fastfetch'
+alias nf='fastfetch'
+
+# Alias (extra)
+alias al="echo ------------Your curent aliases are:------------ ;alias" 
