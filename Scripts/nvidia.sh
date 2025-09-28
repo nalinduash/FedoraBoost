@@ -109,8 +109,7 @@ wait "$INSTALL_PID"
 if [[ $? -eq 0 ]]; then
   logPass "Build successfull"
 else
-  logFail "Build Fail"
-  exit 1
+  logWarning "Build Fail"
 fi
 
 logDone

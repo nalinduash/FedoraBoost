@@ -33,7 +33,7 @@ done
 
 # Delete existing extensions
 logScriptMiniSubHead "Deleting existing extensions"
-runCmd "dconf reset -fr /org/gnome/shell/extensions/" "Resetting configurations of Gnome extensions"
+runCmd "dconf reset -f /org/gnome/shell/extensions/" "Resetting configurations of Gnome extensions"
 delete_folder_if_exists "$HOME/.local/share/gnome-shell/extensions/"
 
 # Install Gnome extensions
