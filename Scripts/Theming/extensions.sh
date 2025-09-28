@@ -96,15 +96,11 @@ gsettings set org.gnome.shell.extensions.appindicator tray-pos "right"
 # Changing settings of Dash-to-Panel
 logMiniInfo "Customizing Dash-to-Panel"
 
-MONITORS=$(gsettings get org.gnome.shell.extensions.dash-to-panel panel-lengths)
-MONITOR_IDS=$(echo "$MONITORS" | grep -oP '"[^"]+"' | tr -d '"')
-
 createJSONForAllMonitors(){
-  local monitor_ids="$1"
-  local value="$2"
+  local value="$1"
   NEW_STRING="{"
   FIRST=1
-  for id in $monitor_ids; do
+  for id in {0..10}; do
     if [ $FIRST -eq 1 ]; then
       NEW_STRING="$NEW_STRING\"$id\":$value"
       FIRST=0
@@ -134,24 +130,24 @@ gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-revealed-hove
 gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-use-pointer-limit-size true
 gsettings set org.gnome.shell.extensions.dash-to-panel highlight-appicon-hover false
 
-PANEL_ANCHORS_JSON=$(createJSONForAllMonitors "$MONITOR_IDS" "\"MIDDLE\"")
+PANEL_ANCHORS_JSON=$(createJSONForAllMonitors "\"MIDDLE\"")
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-anchors "$PANEL_ANCHORS_JSON"
 
-PANEL_ELEMENT_POSITION_JSON=$(createJSONForAllMonitors "$MONITOR_IDS" "[{\"element\":\"taskbar\",\"visible\":true,\"position\":\"stackedTL\"},
-                                                                        {\"element\":\"dateMenu\",\"visible\":false,\"position\":\"stackedBR\"},
-                                                                        {\"element\":\"showAppsButton\",\"visible\":false,\"position\":\"stackedBR\"},
-                                                                        {\"element\":\"activitiesButton\",\"visible\":false,\"position\":\"stackedTL\"},
-                                                                        {\"element\":\"leftBox\",\"visible\":false,\"position\":\"stackedTL\"},
-                                                                        {\"element\":\"centerBox\",\"visible\":false,\"position\":\"stackedBR\"},
-                                                                        {\"element\":\"rightBox\",\"visible\":false,\"position\":\"stackedBR\"},
-                                                                        {\"element\":\"systemMenu\",\"visible\":false,\"position\":\"stackedBR\"},
-                                                                        {\"element\":\"desktopButton\",\"visible\":false,\"position\":\"stackedBR\"}]")
+PANEL_ELEMENT_POSITION_JSON=$(createJSONForAllMonitors "[{\"element\":\"taskbar\",\"visible\":true,\"position\":\"stackedTL\"},
+														{\"element\":\"dateMenu\",\"visible\":false,\"position\":\"stackedBR\"},
+														{\"element\":\"showAppsButton\",\"visible\":false,\"position\":\"stackedBR\"},
+														{\"element\":\"activitiesButton\",\"visible\":false,\"position\":\"stackedTL\"},
+														{\"element\":\"leftBox\",\"visible\":false,\"position\":\"stackedTL\"},
+														{\"element\":\"centerBox\",\"visible\":false,\"position\":\"stackedBR\"},
+														{\"element\":\"rightBox\",\"visible\":false,\"position\":\"stackedBR\"},
+														{\"element\":\"systemMenu\",\"visible\":false,\"position\":\"stackedBR\"},
+														{\"element\":\"desktopButton\",\"visible\":false,\"position\":\"stackedBR\"}]")
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-element-positions "$PANEL_ELEMENT_POSITION_JSON"
 
-PANEL_SIZE_JSON=$(createJSONForAllMonitors "$MONITOR_IDS" "58")                                                                       
+PANEL_SIZE_JSON=$(createJSONForAllMonitors "58")                                                                       
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-sizes "$PANEL_SIZE_JSON"
 
-PANEL_LENGTH_JSON=$(createJSONForAllMonitors "$MONITOR_IDS" "-1")                                                                       
+PANEL_LENGTH_JSON=$(createJSONForAllMonitors "-1")                                                                       
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-lengths "$PANEL_LENGTH_JSON"
 
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-top-bottom-margins 8
