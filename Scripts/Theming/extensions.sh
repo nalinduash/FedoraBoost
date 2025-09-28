@@ -33,7 +33,7 @@ done
 
 # Delete existing extensions
 logScriptMiniSubHead "Deleting existing extensions"
-runCmd "dconf reset -f /org/gnome/shell/extensions/" "Resetting configurations of Gnome extensions"
+runCmd "dconf reset -fr /org/gnome/shell/extensions/" "Resetting configurations of Gnome extensions"
 delete_folder_if_exists "$HOME/.local/share/gnome-shell/extensions/"
 
 # Install Gnome extensions
@@ -95,10 +95,32 @@ gsettings set org.gnome.shell.extensions.appindicator tray-pos "right"
 
 # Changing settings of Dash-to-Panel
 logMiniInfo "Customizing Dash-to-Panel"
+
+MONITORS=$(gsettings get org.gnome.shell.extensions.dash-to-panel panel-lengths)
+MONITOR_IDS=$(echo "$MONITORS" | grep -oP '"[^"]+"' | tr -d '"')
+
+createJSONForAllMonitors(){
+  local monitor_ids="$1"
+  local value="$2"
+  NEW_STRING="{"
+  FIRST=1
+  for id in $monitor_ids; do
+    if [ $FIRST -eq 1 ]; then
+      NEW_STRING="$NEW_STRING\"$id\":$value"
+      FIRST=0
+    else
+      NEW_STRING="$NEW_STRING,\"$id\":$value"
+    fi
+  done        
+  NEW_STRING="$NEW_STRING}" 
+
+  echo "$NEW_STRING"
+}
+
 gsettings set org.gnome.shell.extensions.dash-to-panel animate-appicon-hover true
 gsettings set org.gnome.shell.extensions.dash-to-panel animate-appicon-hover-animation-zoom "{'SIMPLE': 1.5, 'RIPPLE': 1.25, 'PLANK': 2.0}"
 gsettings set org.gnome.shell.extensions.dash-to-panel appicon-margin 4
-gsettings set org.gnome.shell.extensions.dash-to-panel dot-position 'BOTTOM'
+gsettings set org.gnome.shell.extensions.dash-to-panel appicon-padding 2
 gsettings set org.gnome.shell.extensions.dash-to-panel click-action 'TOGGLE-SPREAD'
 gsettings set org.gnome.shell.extensions.dash-to-panel dot-style-unfocused 'DOTS'
 gsettings set org.gnome.shell.extensions.dash-to-panel global-border-radius 3
@@ -108,36 +130,43 @@ gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-animation-tim
 gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-close-delay 100
 gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-enable-start-delay 500
 gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-hide-from-windows true
-gsettings set org.gnome.shell.extensions.dash-to-panel panel-anchors '{"CMN-0x00000000":"MIDDLE"}'
-gsettings set org.gnome.shell.extensions.dash-to-panel panel-element-positions '{"CMN-0x00000000":[
-                                                                                                  {"element":"taskbar","visible":true,"position":"stackedTL"},
-                                                                                                  {"element":"dateMenu","visible":true,"position":"stackedBR"},
-                                                                                                  {"element":"showAppsButton","visible":true,"position":"stackedBR"},
-                                                                                                  {"element":"activitiesButton","visible":false,"position":"stackedTL"},
-                                                                                                  {"element":"leftBox","visible":false,"position":"stackedTL"},
-                                                                                                  {"element":"centerBox","visible":false,"position":"stackedBR"},
-                                                                                                  {"element":"rightBox","visible":false,"position":"stackedBR"},
-                                                                                                  {"element":"systemMenu","visible":false,"position":"stackedBR"},
-                                                                                                  {"element":"desktopButton","visible":false,"position":"stackedBR"}
-                                                                                                ]
-                                                                                }'
-gsettings set org.gnome.shell.extensions.dash-to-panel panel-lengths '{"CMN-0x00000000":70}'
-gsettings set org.gnome.shell.extensions.dash-to-panel panel-positions '{}'
-gsettings set org.gnome.shell.extensions.dash-to-panel panel-sizes '{"CMN-0x00000000":60}'
+gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-revealed-hover-limit-size true
+gsettings set org.gnome.shell.extensions.dash-to-panel intellihide-use-pointer-limit-size true
+gsettings set org.gnome.shell.extensions.dash-to-panel highlight-appicon-hover false
+
+PANEL_ANCHORS_JSON=$(createJSONForAllMonitors "$MONITOR_IDS" "\"MIDDLE\"")
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-anchors "$PANEL_ANCHORS_JSON"
+
+PANEL_ELEMENT_POSITION_JSON=$(createJSONForAllMonitors "$MONITOR_IDS" "[{\"element\":\"taskbar\",\"visible\":true,\"position\":\"stackedTL\"},
+                                                                        {\"element\":\"dateMenu\",\"visible\":false,\"position\":\"stackedBR\"},
+                                                                        {\"element\":\"showAppsButton\",\"visible\":false,\"position\":\"stackedBR\"},
+                                                                        {\"element\":\"activitiesButton\",\"visible\":false,\"position\":\"stackedTL\"},
+                                                                        {\"element\":\"leftBox\",\"visible\":false,\"position\":\"stackedTL\"},
+                                                                        {\"element\":\"centerBox\",\"visible\":false,\"position\":\"stackedBR\"},
+                                                                        {\"element\":\"rightBox\",\"visible\":false,\"position\":\"stackedBR\"},
+                                                                        {\"element\":\"systemMenu\",\"visible\":false,\"position\":\"stackedBR\"},
+                                                                        {\"element\":\"desktopButton\",\"visible\":false,\"position\":\"stackedBR\"}]")
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-element-positions "$PANEL_ELEMENT_POSITION_JSON"
+
+PANEL_SIZE_JSON=$(createJSONForAllMonitors "$MONITOR_IDS" "58")                                                                       
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-sizes "$PANEL_SIZE_JSON"
+
+PANEL_LENGTH_JSON=$(createJSONForAllMonitors "$MONITOR_IDS" "-1")                                                                       
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-lengths "$PANEL_LENGTH_JSON"
+
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-top-bottom-margins 8
 gsettings set org.gnome.shell.extensions.dash-to-panel prefs-opened true
-gsettings set org.gnome.shell.extensions.dash-to-panel preview-use-custom-opacity true
+gsettings set org.gnome.shell.extensions.dash-to-panel stockgs-force-hotcorner true
 gsettings set org.gnome.shell.extensions.dash-to-panel stockgs-keep-top-panel true
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-gradient-top-color '#000000'
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-gradient-top-opacity 0.0
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-panel-opacity 0.4
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-bg false
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-gradient false
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-bg-color '#9a9996'
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-panel-opacity 0.5
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-bg true
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-opacity true
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-dynamic-opacity true
 gsettings set org.gnome.shell.extensions.dash-to-panel window-preview-padding 15
 gsettings set org.gnome.shell.extensions.dash-to-panel window-preview-size 180
-gsettings set org.gnome.shell.extensions.dash-to-panel multi-monitors false
+gsettings set org.gnome.shell.extensions.dash-to-panel window-preview-fixed-y false
+gsettings set org.gnome.shell.extensions.dash-to-panel window-preview-title-font-color '#000000'
 
 # Changing settings of Blur-my-shell
 logMiniInfo "Customizing Blur-my-shell"

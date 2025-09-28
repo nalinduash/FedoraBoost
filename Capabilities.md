@@ -38,3 +38,4 @@ This script automates the post-installation setup of Fedora with a focus on perf
 ## ⌨️ Usability
 
 * ✅ Add shortcut keys
+* ✅ Add Aliases
