@@ -25,7 +25,7 @@ Welcome to **FedoraBoost** — an open-source collection of scripts to **automat
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/nalinduash/FedoraBoost.git
+   git clone --depth 1 https://github.com/nalinduash/FedoraBoost.git
    cd FedoraBoost
    ```
 
