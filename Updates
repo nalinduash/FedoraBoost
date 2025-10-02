@@ -9,7 +9,13 @@ Script speed improved
 Added flatpak app selection
 Backup gnome sleep settings
 Cleaned up script
+Added Aliases
+Added Extension "Coverflow-Alt-Tab"
+Removed animation for flatpack app installation. Because, it takes a lot of time and user may think that script got stucked.
+Removed animation for some Nvidia driver installation. Because, it takes a lot of time and user may think that script got stucked.
 
 Bug Fixed: Sudden logout fixed.
 Bug Fixed: Blur inconsistancy fixed.
 Bug Fixed: Backup naming conflict fixed.
+Bug Fixed: Dash-to-Panel inconsistency in multi-monitor setup fixed.
+Bug Fixed: Not auto detecting wallpapers fixed.

@@ -64,13 +64,13 @@ install_extension "blur-my-shell@aunetx"
 install_extension "clipboard-indicator@tudmotu.com"
 install_extension "compiz-alike-magic-lamp-effect@hermes83.github.com"
 install_extension "compiz-windows-effect@hermes83.github.com"
+install_extension "CoverflowAltTab@palatis.blogspot.com"
 install_extension "dash-to-panel@jderose9.github.com"
 install_extension "desktop-cube@schneegans.github.com"
 install_extension "mediacontrols@cliffniff.github.com"
 install_extension "tiling-assistant@leleat-on-github"
 install_extension "tophat@fflewddur.github.io"
 install_extension "user-theme@gnome-shell-extensions.gcampax.github.com"
-install_extension "caffeine@patapon.info"
 
 # Compile gsettings schemas in order to be able to set them
 logScriptMiniSubHead "Compiling gsettings schemas in order to be able to set them"
@@ -79,13 +79,13 @@ sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell@aunetx/schemas/org.g
 sudo cp ~/.local/share/gnome-shell/extensions/clipboard-indicator@tudmotu.com/schemas/org.gnome.shell.extensions.clipboard-indicator.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/compiz-alike-magic-lamp-effect@hermes83.github.com/schemas/org.gnome.shell.extensions.com.github.hermes83.compiz-alike-magic-lamp-effect.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/compiz-windows-effect@hermes83.github.com/schemas/org.gnome.shell.extensions.com.github.hermes83.compiz-windows-effect.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/CoverflowAltTab@palatis.blogspot.com/schemas/org.gnome.shell.extensions.coverflowalttab.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas/org.gnome.shell.extensions.dash-to-panel.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/desktop-cube@schneegans.github.com/schemas/org.gnome.shell.extensions.desktop-cube.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/mediacontrols@cliffniff.github.com/schemas/org.gnome.shell.extensions.mediacontrols.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/tiling-assistant@leleat-on-github/schemas/org.gnome.shell.extensions.tiling-assistant.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io/schemas/org.gnome.shell.extensions.tophat.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com/schemas/org.gnome.shell.extensions.user-theme.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/caffeine@patapon.info/schemas/org.gnome.shell.extensions.caffeine.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/ 2>/dev/null
 
 
@@ -155,7 +155,8 @@ gsettings set org.gnome.shell.extensions.dash-to-panel prefs-opened true
 gsettings set org.gnome.shell.extensions.dash-to-panel stockgs-force-hotcorner true
 gsettings set org.gnome.shell.extensions.dash-to-panel stockgs-keep-top-panel true
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-bg-color '#9a9996'
-gsettings set org.gnome.shell.extensions.dash-to-panel trans-panel-opacity 0.5
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-panel-opacity 0.7
+gsettings set org.gnome.shell.extensions.dash-to-panel trans-dynamic-anim-target 1.0
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-bg true
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-custom-opacity true
 gsettings set org.gnome.shell.extensions.dash-to-panel trans-use-dynamic-opacity true

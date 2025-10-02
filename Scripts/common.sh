@@ -264,16 +264,7 @@ installFlatpakPackage(){
   if flatpak list --app | grep -q "$1"; then
     logAlreadyInstall "$2"
   else
-    flatpak install -y flathub "$1" &>/dev/null &
-    INSTALL_PID=$!
-    spinner "$INSTALL_PID" "Installing [$2]"
-    wait "$INSTALL_PID"
-    if [[ $? -eq 0 ]]; then
-      logPassInstall "$2"
-    else
-      logFailInstall "$2"
-      exit 1
-    fi
+    flatpak install -y flathub "$1" 
   fi
 }
 

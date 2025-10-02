@@ -47,9 +47,8 @@ installPackages "kernel-devel"
 # Install the appropriate NVIDIA driver
 case $DRIVER in
     "470xx")
-        installPackages "akmod-nvidia-470xx"
-        installPackages "xorg-x11-drv-nvidia-470xx"
         installPackages "$CUDA_PACKAGE"
+		sudo dnf install -y "akmod-nvidia-470xx" "xorg-x11-drv-nvidia-470xx"
 
         # VDPAU/VAAPI
         installPackages "nvidia-vaapi-driver"
@@ -57,9 +56,8 @@ case $DRIVER in
         installPackages "vdpauinfo"
         ;;
     "390xx")
-        installPackages "akmod-nvidia-390xx"
-        installPackages "xorg-x11-drv-nvidia-390xx"
         installPackages "$CUDA_PACKAGE"
+		sudo dnf install -y "akmod-nvidia-390xx" "xorg-x11-drv-nvidia-390xx"
 
         # VDPAU/VAAPI
         installPackages "nvidia-vaapi-driver"
@@ -69,19 +67,12 @@ case $DRIVER in
     "340xx")
         # For newer Fedora, enable longterm kernel support
         addRepo "kwizart/kernel-longterm-6.1"
-        installPackages "akmods"
-        installPackages "gcc"
-        installPackages "kernel-longterm"
-        installPackages "kernel-longterm-devel"
-        installPackages "akmod-nvidia-340xx"
-        installPackages "xorg-x11-drv-nvidia-340xx"
         installPackages "$CUDA_PACKAGE"
+		sudo dnf install -y "akmods" "gcc" "xorg-x11-drv-nvidia-340xx" "akmod-nvidia-340xx" "kernel-longterm-devel" "kernel-longterm"
         ;;
     "latest")
-        installPackages "akmod-nvidia"
-        installPackages "xorg-x11-drv-nvidia"
+		sudo dnf install -y "akmod-nvidia" "xorg-x11-drv-nvidia" "xorg-x11-drv-nvidia-cuda-libs"
         installPackages "$CUDA_PACKAGE"
-        installPackages "xorg-x11-drv-nvidia-cuda-libs"
 
         # VDPAU/VAAPI
         installPackages "nvidia-vaapi-driver"

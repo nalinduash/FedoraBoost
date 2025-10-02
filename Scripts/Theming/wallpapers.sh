@@ -5,7 +5,7 @@ source ./Scripts/common.sh
 
 # Hardcoded paths
 SRC="./Assets/Wallpapers"
-DEST="$HOME/.local/share/backgrounds/FedoraBoost"
+DEST="$HOME/.local/share/backgrounds"
 
 # Create destination folder if not exists
 logScriptMiniSubHead "Creating destination folder if not exists"
