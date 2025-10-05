@@ -8,6 +8,10 @@ Welcome to **FedoraBoost** — an open-source collection of scripts to **automat
 
 ---
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6tUFpFNyu4Y?si=2ooZU7lsU3mI1E7E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+---
+
 ## ✨ What FedoraBoost Does
 
 * ⚡ **One-click setup** with `install.sh`
