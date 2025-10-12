@@ -50,16 +50,36 @@ alias delete='sudo dnf remove $1'
 alias search='dnf search $1'
 alias uu="sudo dnf update && sudo dnf upgrade"
 
+
 # Alias (system)
 alias bye='systemctl poweroff'
+
 
 # Alias (common)
 alias c='clear'  
 alias h='history' 
 
+
 # Alias (other)
 alias ff='fastfetch'
 alias nf='fastfetch'
 
+
 # Alias (extra)
 alias al="echo ------------Your curent aliases are:------------ ;alias" 
+
+
+# Flatpack Applications
+alias gearlever='flatpak run it.mijorus.gearlever'
+
+alias missioncenter='flatpak run io.missioncenter.MissionCenter'
+alias taskmanager='flatpak run io.missioncenter.MissionCenter'
+alias mc='flatpak run io.missioncenter.MissionCenter'
+alias tm='flatpak run io.missioncenter.MissionCenter'
+
+alias localsend='flatpak run org.localsend.localsend_app'
+
+alias appflowy='flatpak run io.appflowy.AppFlowy'
+alias notion='flatpak run io.appflowy.AppFlowy'
+
+alias zoom='flatpak run us.zoom.Zoom'
