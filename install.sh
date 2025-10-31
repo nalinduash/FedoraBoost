@@ -92,7 +92,7 @@ source ./Scripts/prepare.sh
 sudo ./Scripts/secureboot.sh               # Need sudo privilages here
 
 # Select Apps
-source ./Scripts/selectApps.sh
+source ./Scripts/Apps/selectApps.sh
 
 # Installing Nvidia drivers
 source ./Scripts/nvidia.sh
@@ -107,7 +107,7 @@ source ./Scripts/systemTweaks.sh
 source ./Scripts/theming.sh 
 
 # Install Apps
-source ./Scripts/apps.sh "$appfile"
+source ./Scripts/Apps/installApps.sh "$appfile"
 
 # Finish Script
 source ./Scripts/finish.sh

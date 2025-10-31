@@ -8,17 +8,17 @@ logScriptHead "Selecting apps to be installed..."
 # Categories and apps
 declare -A categories
 categories=(
-  ["Developer"]="git vim python3 python3-pip nodejs npm"
-  ["Productivity"]="libreoffice"
-  ["Normal User"]="video-downloader Zoom Mission-Center Gear-Lever Etcher"
-  ["Common"]="Ulauncher VLC ark"
-  ["Creative"]="gimp inkscape blender krita audacity obs-studio kdenlive"
-  ["System Tools"]="btop gparted curl wget"
-  ["Gamer"]="lutris"
+  ["Developer"]="Git Visual_studio_code"
+  ["Util"]="Video_downloader Mission_center Gear_lever Etcher ULauncher Ark Gparted Timeshift LocalSend"
+  ["Productivity"]="Libre_office Obsidian AppFlowy"
+  ["Communication"]="Zoom Discord Telegram"
+  ["Multimedia"]="VLC"
+  ["Content"]="Obs_Studio Kdenlive"
+  ["Gamer"]="Lutris Wine"
 )
 
 while true; do
-    logScriptSubHead "Select one or more categories (press Space to select, Enter to confirm):"
+    logScriptSubHead "Select one or more app categories (press Space to select, Enter to confirm):"
     mapfile -t selected_categories < <(printf "%s\n" "${!categories[@]}" | gum choose --no-limit)
 
     # Build app list

@@ -1,3 +1,5 @@
+V1:--------------------------------------
+
 Added progress bar for installing applications
 Removed error messages in gnome extensions installation
 Backup Gnome Extensions and their configurations
@@ -19,3 +21,8 @@ Bug Fixed: Blur inconsistancy fixed.
 Bug Fixed: Backup naming conflict fixed.
 Bug Fixed: Dash-to-Panel inconsistency in multi-monitor setup fixed.
 Bug Fixed: Not auto detecting wallpapers fixed.
+-----------------------------------------------
+
+V2:--------------------------------------------
+
+Optimized the script that install apps
