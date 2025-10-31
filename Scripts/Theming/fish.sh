@@ -13,18 +13,14 @@ installPackages "fish"                      # Fast shell interpreter
 # Add configs for ghostty
 logScriptMiniSubHead "Adding configs for ghostty"
 delete_file_if_exists "$HOME/.config/ghostty/config"
+mkdir -p "$HOME/.config/ghostty"
 cp "./Assets/Configs/ghostty/config" "$HOME/.config/ghostty/"
 
 # Install oh-my-posh 
 logScriptMiniSubHead "Installing Oh-My-Posh"
-if ! command -v oh-my-posh &> /dev/null; then
-    curl -s https://ohmyposh.dev/install.sh | bash -s
-    logPassInstall "oh-my-posh"
-else
-    logAlreadyInstall "oh-my-posh"
-fi
+installPackages "oh-my-posh"
 
-# Add oh-my-posh to PATH
+# Add Fish to PATH
 logScriptMiniSubHead "Add oh-my-posh to PATH"
 if ! grep -qx '/usr/local/bin/fish' /etc/shells; then
     echo '/usr/local/bin/fish' | sudo tee -a /etc/shells
@@ -70,6 +66,10 @@ fi
 logScriptMiniSubHead "Copying Fish config"
 mkdir -p $HOME/.config/fish
 cp "./Assets/Configs/fish/config.fish" "$HOME/.config/fish/config.fish"
+
+logScriptMiniSubHead "Copying Oh-my-posh config"
+mkdir -p $HOME/.config/oh-my-posh
+cp "./Assets/Configs/oh-my-posh/atomic.omp.json" "$HOME/.config/oh-my-posh/atomic.omp.json"
 
 # Adding shortcuts for ghostty
 logScriptMiniSubHead "Adding ghostty shortcuts"

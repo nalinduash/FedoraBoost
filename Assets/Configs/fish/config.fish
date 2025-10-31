@@ -3,7 +3,7 @@ set -gx PATH $PATH $HOME/.local/bin
 
 if status is-interactive
     # Oh My Posh init 
-    oh-my-posh init fish --config '~/.cache/oh-my-posh/themes/atomic.omp.json' | source
+    oh-my-posh init fish --config '~/.config/oh-my-posh/atomic.omp.json' | source
 
     set supports_images 0
 
